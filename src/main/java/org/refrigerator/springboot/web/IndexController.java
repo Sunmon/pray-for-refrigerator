@@ -11,4 +11,10 @@ public class IndexController {
         //mustache starter있어서 앞경로 / 뒤 .mustache 는 자동으로 붙음
         return "index";
     }
+
+    //저장 화면. posts-save.mustach 호출
+    @GetMapping("/posts/save")
+    public String postsSave(){
+        return "posts-save";
+    }
 }
