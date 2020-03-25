@@ -4,7 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.web.dto.PostsResponseDto;
 import org.refrigerator.springboot.web.dto.PostsUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
-
 import org.refrigerator.springboot.service.posts.PostsService;
 import org.refrigerator.springboot.web.dto.PostsSaveRequestDto;
 
@@ -27,4 +26,11 @@ public class PostsApiController {
     public PostsResponseDto findById(@PathVariable Long id){
         return postsService.findById(id);
     }
+
+    @DeleteMapping("/api/v1/posts/{id}")
+    public Long delete(@PathVariable Long id) {
+        postsService.delete(id);
+        return id;
+    }
+
 }
