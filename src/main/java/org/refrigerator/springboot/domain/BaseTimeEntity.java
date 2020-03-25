@@ -1,6 +1,7 @@
 /**
  * @class 모든 Entity의 상위 클래스
  * @role  createDate, modifiedDate를 자동으로 관리
+ *    이 클래스만 상속받으면 엔티티 날짜 자동관리
  */
 package org.refrigerator.springboot.domain;
 
