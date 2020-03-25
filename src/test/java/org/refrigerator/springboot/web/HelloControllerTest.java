@@ -15,7 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest                                         //Web(Spring MVC)이용
 public class HelloControllerTest {
 
-    @Autowired                                      //Bean
+    @Autowired                                      //spring Bean 주입
     private MockMvc mvc;                            //웹 API 테스트용
 
     @Test
