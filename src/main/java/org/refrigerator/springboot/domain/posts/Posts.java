@@ -3,13 +3,14 @@ package org.refrigerator.springboot.domain.posts;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.refrigerator.springboot.domain.BaseTimeEntity;
 
 import javax.persistence.*;
 
 @Getter //lombok : Getter 자동 생성
 @NoArgsConstructor  //lombok : public Posts(){} 기본 생성자 자동 생성
 @Entity //JPA
-public class Posts {
+public class Posts extends BaseTimeEntity {
     @Id //PK(Primary Key)
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
