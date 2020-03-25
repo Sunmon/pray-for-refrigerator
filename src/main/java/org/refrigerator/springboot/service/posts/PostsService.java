@@ -2,11 +2,15 @@ package org.refrigerator.springboot.service.posts;
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.domain.posts.Posts;
 import org.refrigerator.springboot.domain.posts.PostsRepository;
+import org.refrigerator.springboot.web.dto.PostsListResponseDto;
 import org.refrigerator.springboot.web.dto.PostsResponseDto;
 import org.refrigerator.springboot.web.dto.PostsSaveRequestDto;
 import org.refrigerator.springboot.web.dto.PostsUpdateRequestDto;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @RequiredArgsConstructor
@@ -34,4 +38,13 @@ public class PostsService {
                 .orElseThrow(() -> new IllegalArgumentException("해당 사용자가 없습니다.id=" + id));
         return new PostsResponseDto(entity);
     }
+
+    //readOnly는 조회 속도 개선
+    @Transactional(readOnly=true)
+    public List<PostsListResponseDto> findAllDesc(){
+        return postsRepository.findAllDesc().stream()
+                .map(PostsListResponseDto::new) //.map(posts->new PostsListResponseDto(posts)와 같음
+                .collect(Collectors.toList());
+    }
+
 }
