@@ -37,6 +37,8 @@ dependencies {
     compile('com.h2database:h2')
     //mustache
     compile('org.springframework.boot:spring-boot-starter-mustache')
+    //spring security. social login
+    compile('org.springframework.boot:spring-boot-starter-oauth2-client')
     //test
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'
