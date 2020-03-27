@@ -4,7 +4,7 @@
 package org.refrigerator.springboot.config.auth.dto;
 
 import lombok.Getter;
-import org.refrigerator.springboot.user.User;
+import org.refrigerator.springboot.domain.user.User;
 
 import java.io.Serializable;
 

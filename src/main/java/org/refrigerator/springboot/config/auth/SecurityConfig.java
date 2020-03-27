@@ -1,7 +1,7 @@
 package org.refrigerator.springboot.config.auth;
 
 import lombok.RequiredArgsConstructor;
-import org.refrigerator.springboot.user.Role;
+import org.refrigerator.springboot.domain.user.Role;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

@@ -2,7 +2,7 @@
  * @class: 사용자 정보를 담당하는 Entity 클래스
  */
 
-package org.refrigerator.springboot.user;
+package org.refrigerator.springboot.domain.user;
 
 import lombok.Builder;
 import lombok.Getter;

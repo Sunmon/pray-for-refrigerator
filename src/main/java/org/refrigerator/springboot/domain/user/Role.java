@@ -1,4 +1,4 @@
-package org.refrigerator.springboot.user;
+package org.refrigerator.springboot.domain.user;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

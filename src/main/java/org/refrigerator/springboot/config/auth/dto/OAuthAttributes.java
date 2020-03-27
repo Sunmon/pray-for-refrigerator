@@ -2,8 +2,8 @@ package org.refrigerator.springboot.config.auth.dto;
 
 import lombok.Builder;
 import lombok.Getter;
-import org.refrigerator.springboot.user.Role;
-import org.refrigerator.springboot.user.User;
+import org.refrigerator.springboot.domain.user.Role;
+import org.refrigerator.springboot.domain.user.User;
 
 import java.util.Map;
 
