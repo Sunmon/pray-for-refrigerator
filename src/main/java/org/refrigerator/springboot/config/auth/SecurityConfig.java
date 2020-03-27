@@ -1,5 +1,8 @@
+/**
+ * @class Spring Security관련 설정들을 모아두는 클래스
+ * url별 접근 제한 / 로그인 / 권한 설정 등등...
+ */
 package org.refrigerator.springboot.config.auth;
-
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.domain.user.Role;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
