@@ -39,6 +39,8 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-mustache')
     //spring security. social login
     compile('org.springframework.boot:spring-boot-starter-oauth2-client')
+    //jdbc
+    compile('org.springframework.session:spring-session-jdbc')
     //test
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile group: 'junit', name: 'junit', version: '4.12'
