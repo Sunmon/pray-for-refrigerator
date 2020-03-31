@@ -4,3 +4,18 @@ files:
   - source: / #codedeploy에서 준 파일 중 destination으로 옮길 대상
     destination: /home/ec2-user/app/step2/zip/ #파일을 받을 위치
     overwrite: yes
+
+# codeDeploy 에서 ec2서버로 넘겨준 파일들 권한
+permissions:
+  - object: /
+    pattern: "**"
+    owner: ec2-user
+    group: ec2-user
+
+# CodeDeploy 배포 단계에서 실행할 명령어
+hooks:
+  ApplicationStart:
+    - location: deploy.sh
+      timeout: 60
+      runas: ec2-user
+
