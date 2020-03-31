@@ -1,6 +1,6 @@
 package org.refrigerator.springboot.web;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import javafx.geometry.Pos;
+//import javafx.geometry.Pos;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
