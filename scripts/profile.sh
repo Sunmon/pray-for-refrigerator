@@ -2,8 +2,9 @@
 
 # 쉬고있는 profile 찾기: real1이 사용중이면 real2가 쉬고있고, 반대도 가능
 
-function find_idle_profile() {
-  RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code" http://localhost/profile)
+function find_idle_profile()
+{
+  RESPONSE_CODE=$(curl -s -o /dev/null -w "%{http_code}" http://localhost/profile)
 
   if [ ${RESPONSE_CODE} -ge 400 ] # 400보다 크면 ( 40x/50x에러)
   then
@@ -23,7 +24,8 @@ function find_idle_profile() {
 }
 
 # 쉬고 있는 profile의 port 찾기
-function find_idle_port() {
+function find_idle_port()
+{
   IDLE_PROFILE=$(find_idle_profile)
 
   if [ ${IDLE_PROFILE} == real1 ]
