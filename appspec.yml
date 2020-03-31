@@ -1,0 +1,6 @@
+version: 0.0 #codedeploy version
+os: linux
+files:
+  - source: / #codedeploy에서 준 파일 중 destination으로 옮길 대상
+    destination: /home/ec2-user/app/step2/zip/ #파일을 받을 위치
+    overwrite: yes
