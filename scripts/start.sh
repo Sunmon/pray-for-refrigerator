@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# 재빌드용 주석
 
 ABSPATH=$(readlink -f $0)
 ABSDIR=$(dirname $ABSPATH)
