@@ -13,16 +13,22 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-public class Recipies {
+public class Recipe {
     @Id //PK(Primary Key)
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
 
+    //TODO: JoinColum(name)넣으면 빨간줄 쳐져서 삭제함
     @ManyToOne
-    @JoinColumn(name = "food_id")
+    @JoinColumn()
     private Food food;
-​
+
     @ManyToOne
-    @JoinColumn(name = "ingredients_id")
-    private Ingredients ingredients;
+    @JoinColumn()
+    private Ingredient ingredient;
+
+
+
+//    @JoinColumn(name = "ingredients_id")
+//    private Ingredients ingredients;
 }

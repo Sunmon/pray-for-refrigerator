@@ -8,11 +8,13 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Ingredients {
+public class Ingredient {
     @Id //PK
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
@@ -25,9 +27,12 @@ public class Ingredients {
     @Column(length=10)
     private String category;
 
+    //TODO: casecade 설정
+    @OneToMany(mappedBy="ingredient")
+    private List<Recipe> recipeList = new ArrayList<>();
     
     @Builder // lombok : 빌더 패턴 클래스 생성
-    public Ingredients(String name){
+    public Ingredient(String name){
         this.name = name;
     }
 

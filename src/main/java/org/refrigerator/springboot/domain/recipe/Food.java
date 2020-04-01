@@ -8,6 +8,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @NoArgsConstructor
@@ -24,6 +26,10 @@ public class Food {
     //국수, 햄버거
     @Column(length=10)
     private String category;
+
+    //TODO: casecade 설정
+    @OneToMany(mappedBy="food")
+    private List<Recipe> recipeList = new ArrayList<>();
 
     @Builder // lombok : 빌더 패턴 클래스 생성
     public Food(String name){

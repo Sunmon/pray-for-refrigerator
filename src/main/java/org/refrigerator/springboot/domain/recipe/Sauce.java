@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @NoArgsConstructor
 @Entity
-public class Sauces {
+public class Sauce {
     @Id //PK
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
@@ -19,7 +19,7 @@ public class Sauces {
     private String name;
 
     @Builder // lombok : 빌더 패턴 클래스 생성
-    public Sauces(String name){
+    public Sauce(String name){
         this.name = name;
     }
 }
