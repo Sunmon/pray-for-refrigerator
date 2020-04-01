@@ -15,10 +15,10 @@ public class Posts extends BaseTimeEntity {
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
 
-    @Column(length=500, nullable= false)
+    @Column(length=500, nullable = false)
     private String title;
 
-    @Column(columnDefinition = "TEXT", nullable =false)
+    @Column(columnDefinition = "TEXT", nullable = false)
     private String content;
 
     private String author;
