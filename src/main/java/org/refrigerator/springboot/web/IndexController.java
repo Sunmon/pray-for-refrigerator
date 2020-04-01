@@ -4,11 +4,9 @@ import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.config.auth.LoginUser;
 import org.refrigerator.springboot.config.auth.dto.SessionUser;
 import org.refrigerator.springboot.service.posts.PostsService;
-import org.refrigerator.springboot.web.dto.PostsResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 
 
 @RequiredArgsConstructor
@@ -35,7 +33,12 @@ public class IndexController {
 
     /** 레시피 게시판 화면 호출 **/
     @GetMapping("/recipeBoard")
-    public String recipeBoard(){return "recipeBoard";}
+    public String recipeBoard(){return "recipe-board";}
+
+
+    /** 레시피 검색 화면 호출 **/
+    @GetMapping("/recipeSearch")
+    public String recipeSearch(){return "recipe-search";}
 
 //
 //    /** 저장 화면. posts-save.mustach 호출 **/
