@@ -1,9 +1,8 @@
 package org.refrigerator.springboot.web;
 
 import lombok.RequiredArgsConstructor;
-import org.refrigerator.springboot.config.auth.LoginUser;
-import org.refrigerator.springboot.config.auth.dto.SessionUser;
 import org.refrigerator.springboot.service.posts.PostsService;
+import org.refrigerator.springboot.service.recipe.RecipeService;
 import org.refrigerator.springboot.web.dto.PostsResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,9 +12,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 @RequiredArgsConstructor
 @Controller
-public class recipeBoardController {
+public class RecipeSearchController {
 
-    private final PostsService postsService;
+    private final RecipeService recipeService;
 
 //    @GetMapping("/")
 //    public String index(Model model, @LoginUser SessionUser user){
@@ -38,19 +37,19 @@ public class recipeBoardController {
 //    public String recipeBoard(){return "recipeBoard";}
 
 
-    /** 저장 화면. posts-save.mustach 호출 **/
-    @GetMapping("/posts/save")
-    public String postsSave(){
-        return "posts-save";
-    }
-
-    /** 게시글 수정 **/
-    @GetMapping("/posts/update/{id}")
-    public String postsUpdate(@PathVariable Long id, Model model){
-        PostsResponseDto dto = postsService.findById(id);
-        model.addAttribute("post", dto);
-        return "posts-update";
-    }
+//    /** 저장 화면. posts-save.mustach 호출 **/
+//    @GetMapping("/posts/save")
+//    public String postsSave(){
+//        return "posts-save";
+//    }
+//
+//    /** 게시글 수정 **/
+//    @GetMapping("/posts/update/{id}")
+//    public String postsUpdate(@PathVariable Long id, Model model){
+//        PostsResponseDto dto = postsService.findById(id);
+//        model.addAttribute("post", dto);
+//        return "posts-update";
+//    }
 
 
 

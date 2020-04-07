@@ -35,7 +35,6 @@ public class RecipeRepositoryTest {
         ingredient = Ingredient.builder().name("김치").build();
         foodRepository.save(food);
         ingredientRepository.save(ingredient);
-
     }
 
     @After
@@ -44,31 +43,12 @@ public class RecipeRepositoryTest {
     @Test
     public void 음식저장_불러오기(){
         //given
-
-
-        //when
-//        Food food = Food.builder().name("김볶밥").build();
-//        foodRepository.save(food);
-
-//        List<Food> foodList = foodRepository.findAll();
-
-        //then
-//        Food result = foodList.get(0);
-//        assertThat(result.getName()).isEqualTo("김볶밥");
-
-
-////        Food food = Food.builder().name("김볶밥").build();
-////        Ingredient ingredient = Ingredient.builder().name("김치").build();
-//
         recipeRepository.save(Recipe.builder().food(food).ingredient(ingredient).build());
-//
-//        //when
+        //when
         List<Recipe> recipeList = recipeRepository.findAll();
-//
-//        //then
+        //then
         Recipe recipe = recipeList.get(0);
         assertThat(recipe.getFood().getName()).isEqualTo("김볶밥");
         assertThat(recipe.getIngredient().getName()).isEqualTo("김치");
-
     }
 }
