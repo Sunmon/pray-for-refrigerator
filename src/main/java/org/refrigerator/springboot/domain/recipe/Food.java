@@ -8,13 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Food {
+public class Food implements Serializable {
     @Id //PK
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
@@ -27,7 +28,6 @@ public class Food {
     @Column(length=10)
     private String category;
 
-    //TODO: casecade 설정
     @OneToMany(mappedBy="food")
     private List<Recipe> recipeList = new ArrayList<>();
 

@@ -8,13 +8,14 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @NoArgsConstructor
 @Entity
-public class Ingredient {
+public class Ingredient implements Serializable{
     @Id //PK
     @GeneratedValue(strategy= GenerationType.IDENTITY)  //PK auto increment
     private Long id;
