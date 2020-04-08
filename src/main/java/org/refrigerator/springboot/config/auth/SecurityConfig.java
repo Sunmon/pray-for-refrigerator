@@ -24,9 +24,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 //권한 관리 대상 지정
                 //TODO: 글쓰기 user role 설정
+                //TODO: 레시피 일시적으로 다 풀어놨다.
                 .and()
                     .authorizeRequests()
                     .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile","/recipeBoard", "/recipeSearch").permitAll()
+                    .antMatchers("/api/v1/recipe").permitAll()
 //                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
                     .anyRequest() .authenticated()
                 //로그아웃 설정

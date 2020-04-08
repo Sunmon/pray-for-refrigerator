@@ -1,3 +1,6 @@
+/**
+ * @class 레시피 게시판 컨트롤러
+ */
 package org.refrigerator.springboot.web;
 
 import lombok.RequiredArgsConstructor;
@@ -17,25 +20,20 @@ public class RecipeBoardController {
 
     private final PostsService postsService;
 
-//    @GetMapping("/")
-//    public String index(Model model, @LoginUser SessionUser user){
-//        /**
-//         * Model: 서버 템플릿 엔진에서 사용할수있는 객체 저장
-//         * LoginUser : (User) httpSession.getUser("user")를 어노테이션으로.
-//         */
-//        model.addAttribute("posts", postsService.findAllDesc());
-//        if(user != null) {
-//            model.addAttribute("userName", user.getName());
-//        }
-//        //src/main/resources/templates/index.mustache로 전환
-//        //mustache starter있어서 앞경로 / 뒤 .mustache 는 자동으로 붙음
-//        return "index";
-////        return "recipeBoard";
-//    }
-
-//    /** 레시피 게시판 화면 호출 **/
-//    @GetMapping("/recipeBoard")
-//    public String recipeBoard(){return "recipeBoard";}
+    @GetMapping("/recipeBoard")
+    public String recipeBoard(Model model, @LoginUser SessionUser user){
+        /**
+         * Model: 서버 템플릿 엔진에서 사용할수있는 객체 저장
+         * LoginUser : (User) httpSession.getUser("user")를 어노테이션으로.
+         */
+        model.addAttribute("posts", postsService.findAllDesc());
+        if(user != null) {
+            model.addAttribute("userName", user.getName());
+        }
+        //src/main/resources/templates/index.mustache로 전환
+        //mustache starter있어서 앞경로 / 뒤 .mustache 는 자동으로 붙음
+        return "recipe-board";
+    }
 
 
     /** 저장 화면. posts-save.mustach 호출 **/

@@ -29,7 +29,7 @@ public class Ingredient implements Serializable{
     private String category;
 
     //TODO: casecade 설정
-    @OneToMany(mappedBy="ingredient")
+    @OneToMany(mappedBy="ingredient", cascade = CascadeType.ALL)
     private List<Recipe> recipeList = new ArrayList<>();
     
     @Builder // lombok : 빌더 패턴 클래스 생성
