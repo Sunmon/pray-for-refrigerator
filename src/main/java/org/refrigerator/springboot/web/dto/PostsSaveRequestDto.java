@@ -8,6 +8,7 @@ import org.refrigerator.springboot.domain.posts.Posts;
 @Getter
 @NoArgsConstructor  //생성자로 Bean 주입받으면 @Autowired 필요 X
 public class PostsSaveRequestDto {
+
     private String title;
     private String content;
     private String author;

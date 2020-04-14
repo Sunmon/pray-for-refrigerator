@@ -28,7 +28,6 @@ public class Ingredient implements Serializable{
     @Column(length=10)
     private String category;
 
-    //TODO: casecade 설정
     @OneToMany(mappedBy="ingredient", cascade = CascadeType.ALL)
     private List<Recipe> recipeList = new ArrayList<>();
     

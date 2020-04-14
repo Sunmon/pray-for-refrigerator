@@ -7,12 +7,13 @@ import org.refrigerator.springboot.domain.recipe.*;
 import org.refrigerator.springboot.service.recipe.RecipeService;
 
 import javax.persistence.*;
+import java.util.Optional;
 
 @Getter
 @NoArgsConstructor  //생성자로 Bean 주입받으면 @Autowired 필요 X
 public class RecipeSaveRequestDto {
 
-    private Long id;
+//    private Long id;
 //    private Food food;
 //    private Ingredient ingredient;
     private String food;
@@ -29,9 +30,12 @@ public class RecipeSaveRequestDto {
     }
 
     public Recipe toEntity(){
-        //TODO: food, ingredient가 있으면 그걸 가져오고
-        Food foodEntity = foodRepository.findByName(food).orElseGet(()->saveNewFood(food));
-        Ingredient ingredientEntity = ingredientRepository.findByName(ingredient).orElseGet(()->saveNewIngredient(ingredient));
+        //FIXME: food, ingredient가 있으면 그걸 가져오고 없으면 만들기
+        Food foodEntity = foodRepository.findByName(food).get();
+        Ingredient ingredientEntity = ingredientRepository.findByName(ingredient).get();
+
+//        Food foodEntity = foodRepository.findByName(food).orElseGet(()->saveNewFood(food));
+//        Ingredient ingredientEntity = ingredientRepository.findByName(ingredient).orElseGet(()->saveNewIngredient(ingredient));
 
         return Recipe.builder().food(foodEntity).ingredient(ingredientEntity).build();
         //없으면 새로 만든다.

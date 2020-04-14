@@ -33,7 +33,7 @@ public class IngredientRepositoryTest {
 
         //then
         Ingredient result = foodList.get(0);
-        assertThat(result.getName()).isEqualTo("김볶밥");
+        assertThat(result.getName()).isEqualTo("김치");
 
     }
 

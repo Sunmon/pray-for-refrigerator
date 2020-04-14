@@ -22,7 +22,7 @@ public class Recipe {
     private Long id;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
-        @ManyToOne(cascade = CascadeType.MERGE)
+    @ManyToOne(cascade = CascadeType.MERGE)
     @JoinColumn(name="FOOD_NAME", referencedColumnName = "NAME")
     private Food food;
 
