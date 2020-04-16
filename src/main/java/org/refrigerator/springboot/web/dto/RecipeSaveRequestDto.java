@@ -5,8 +5,10 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.refrigerator.springboot.domain.recipe.*;
 import org.refrigerator.springboot.service.recipe.RecipeService;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Optional;
 
 @Getter
@@ -19,7 +21,9 @@ public class RecipeSaveRequestDto {
     private String food;
     private String ingredient;
 
+    @Autowired
     private FoodRepository foodRepository;
+    @Autowired
     private IngredientRepository ingredientRepository;
 //    RecipeService recipeService;
 
@@ -31,7 +35,9 @@ public class RecipeSaveRequestDto {
 
     public Recipe toEntity(){
         //FIXME: food, ingredient가 있으면 그걸 가져오고 없으면 만들기
-        Food foodEntity = foodRepository.findByName(food).get();
+        Food foodEntity = foodRepository.findByName(food).get(); //FIXME
+//        Food foodEntity = foodRepository.findByName(foodName).get();
+
         Ingredient ingredientEntity = ingredientRepository.findByName(ingredient).get();
 
 //        Food foodEntity = foodRepository.findByName(food).orElseGet(()->saveNewFood(food));

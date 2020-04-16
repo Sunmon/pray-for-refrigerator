@@ -50,5 +50,6 @@ public class RecipeRepositoryTest {
         Recipe recipe = recipeList.get(0);
         assertThat(recipe.getFood().getName()).isEqualTo("김볶밥");
         assertThat(recipe.getIngredient().getName()).isEqualTo("김치");
+        assertThat(recipe.getId()).isEqualTo(1L);
     }
 }

@@ -69,7 +69,6 @@ public class RecipeApiControllerTest {
     @Autowired
     private FoodRepository foodRepository;
 
-    //fixme: 얘 제일 먼저!
     @Test
     public void 음식_재료_Repository로_직접_저장된다(){
         Food food = Food.builder().name("김볶밥").build();
@@ -84,12 +83,13 @@ public class RecipeApiControllerTest {
 
         //when
         Food foodEntity = foodRepository.findByName("김볶밥").get();
-        Recipe recipeEntity = recipeRepository.getOne(1L);
-
+//        Recipe recipeEntity = recipeRepository.findAll().get(0);
+        Recipe recipeEntity = recipeRepository.findById(1L).get();
         //then
         assertThat(foodEntity.getName()).isEqualTo("김볶밥");
-        assertThat(foodEntity.getId()).isEqualTo(1);
+        assertThat(foodEntity.getId()).isEqualTo(1L);
         assertThat(recipeEntity.getFood().getName()).isEqualTo("김볶밥");
+        assertThat(recipeEntity.getId()).isEqualTo(1L);
     }
 
     //fixme: 얘부터 해결
@@ -97,23 +97,43 @@ public class RecipeApiControllerTest {
     @Test
     public void 음식과_재료가_이미_저장되어있을때_DTO_toEntity_테스트(){
         //given
-        String food= "김볶밥";
-        String ingredient = "김치";
-        Food _food = Food.builder().name(food).build();
-        Ingredient _ingredient = Ingredient.builder().name(ingredient).build();
-        foodRepository.save(_food);
-        ingredientRepository.save(_ingredient);
+        String foodName= "김볶밥";
+        String ingredientName = "김치";
+        Food food = Food.builder().name(foodName).build();
+        Ingredient ingredient = Ingredient.builder().name(ingredientName).build();
+//        foodRepository.save(food);
+        foodRepository.saveAndFlush(food);
+        ingredientRepository.saveAndFlush(ingredient);
+        //TODO: dto에서 찾아오지말고 그냥 food service만들어서 찾아오면?
 
+//        //test
+//        //then
+//        Food foodEntity = foodRepository.findByName(foodName).get();
+//        assertThat(foodEntity.getName()).isEqualTo(foodName);
+//        assertThat(foodEntity.getId()).isEqualTo(1L);
+//
         //when
         RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
-                .food(food)
-                .ingredient(ingredient)
+                .food(foodName)
+                .ingredient(ingredientName)
                 .build();
-        Recipe _recipe = requestDto.toEntity();
 
-        //then
-        assertThat(requestDto.getFood()).isEqualTo(food);
-//        assertThat(_recipe.getId()).isGreaterThan(0L);
+
+
+        //assert
+//        assertThat(requestDto.getFood()).isEqualTo(foodName);
+//        assertThat(requestDto.getIngredient()).isEqualTo(ingredientName);
+        requestDto.toEntity();
+//        Recipe recipe = requestDto.toEntity();
+//        recipeRepository.save(_recipe);
+//
+//        //when
+//        Recipe recipeEntity = recipeRepository.findAll().get(0);
+//
+//        //then
+//        assertThat(requestDto.getFood()).isEqualTo(food);
+//
+////        assertThat(_recipe.getId()).isGreaterThan(0L);
     }
     //fixme: 얘부터 해결
     @Test
