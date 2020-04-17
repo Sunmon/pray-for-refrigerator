@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RecipeApiController {
     private final RecipeService recipeService;
-    @PostMapping("/api/v1/recipe")
+    @PostMapping("/api/v1/recipe/save")
     public Long save(@RequestBody RecipeSaveRequestDto requestDto) { return recipeService.save(requestDto);}
 
 }

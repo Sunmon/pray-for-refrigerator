@@ -17,7 +17,15 @@ public class RecipeService {
 
     @Transactional
     public Long save(RecipeSaveRequestDto requestDto) {
-        return recipeRepository.save(requestDto.toEntity()).getId();
+        return recipeRepository.save(this.toEntity(requestDto)).getId();
+    }
+
+    @Transactional
+    public Recipe toEntity(RecipeSaveRequestDto requestDto){
+        //음식이름이랑 재료를 검색하여 얻어온다
+        Food food = foodRepository.findByName(requestDto.getFood()).get();
+        Ingredient ingredient = ingredientRepository.findByName(requestDto.getIngredient()).get();
+        return Recipe.builder().food(food).ingredient(ingredient).build();
     }
 
 //    @Transactional

@@ -1,31 +1,36 @@
 package org.refrigerator.springboot.web;
 
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Test;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.*;
 import org.junit.runner.RunWith;
-import org.refrigerator.springboot.domain.posts.PostsRepository;
+import org.refrigerator.springboot.domain.posts.Posts;
 import org.refrigerator.springboot.domain.recipe.*;
+import org.refrigerator.springboot.service.recipe.IngredientService;
 import org.refrigerator.springboot.service.recipe.RecipeService;
+import org.refrigerator.springboot.web.dto.IngredientSaveRequestDto;
 import org.refrigerator.springboot.web.dto.RecipeSaveRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringRunner.class)
+//@DataJdbcTest
 @SpringBootTest(webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class RecipeApiControllerTest {
 
@@ -37,28 +42,6 @@ public class RecipeApiControllerTest {
 
     @Autowired
     private RecipeRepository recipeRepository;
-//    private PostsRepository postsRepository;
-
-//    @Autowired
-//    private WebApplicationContext context;
-//    private MockMvc mvc;
-
-//    @Before
-//    public void setup(){
-//        mvc = MockMvcBuilders
-//                .webAppContextSetup(context)
-//                .apply(springSecurity())
-//                .build();
-//    }
-
-    @Before
-    public void setup(){
-
-    }
-    @After
-    public void tearDown() throws Exception {
-        recipeRepository.deleteAll();
-    }
 
     @Autowired
     private RecipeService recipeService;
@@ -69,12 +52,37 @@ public class RecipeApiControllerTest {
     @Autowired
     private FoodRepository foodRepository;
 
+//    private PostsRepository postsRepository;
+
+    @Autowired
+    private WebApplicationContext context;
+    private MockMvc mvc;
+
+    @Before
+    public void setup(){
+        mvc = MockMvcBuilders
+                .webAppContextSetup(context)
+                .apply(springSecurity())
+                .build();
+
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        recipeRepository.deleteAll();
+    }
+
     @Test
     public void 음식_재료_Repository로_직접_저장된다(){
-        Food food = Food.builder().name("김볶밥").build();
-        Ingredient ingredient = Ingredient.builder().name("김치").build();
+
+        Food food;
+        Ingredient ingredient;
+
+        food = Food.builder().name("김볶밥").build();
+        ingredient = Ingredient.builder().name("김치").build();
         foodRepository.save(food);
         ingredientRepository.save(ingredient);
+
         Recipe recipe = Recipe.builder()
                 .food(food)
                 .ingredient(ingredient)
@@ -83,7 +91,6 @@ public class RecipeApiControllerTest {
 
         //when
         Food foodEntity = foodRepository.findByName("김볶밥").get();
-//        Recipe recipeEntity = recipeRepository.findAll().get(0);
         Recipe recipeEntity = recipeRepository.findById(1L).get();
         //then
         assertThat(foodEntity.getName()).isEqualTo("김볶밥");
@@ -92,82 +99,60 @@ public class RecipeApiControllerTest {
         assertThat(recipeEntity.getId()).isEqualTo(1L);
     }
 
-    //fixme: 얘부터 해결
-    //혹시 연동은 string name으로 하고 entity로 저장해놔서 그런가??
     @Test
-    public void 음식과_재료가_이미_저장되어있을때_DTO_toEntity_테스트(){
+    public void 음식과_재료가_이미_저장되어있을때_RecipeDTO_저장테스트(){
         //given
         String foodName= "김볶밥";
         String ingredientName = "김치";
-        Food food = Food.builder().name(foodName).build();
-        Ingredient ingredient = Ingredient.builder().name(ingredientName).build();
-//        foodRepository.save(food);
-        foodRepository.saveAndFlush(food);
-        ingredientRepository.saveAndFlush(ingredient);
-        //TODO: dto에서 찾아오지말고 그냥 food service만들어서 찾아오면?
+        Food food = Food.builder().name("김볶밥").build();
+        Ingredient ingredient = Ingredient.builder().name("김치").build();
+        foodRepository.save(food);
+        ingredientRepository.save(ingredient);
 
-//        //test
-//        //then
-//        Food foodEntity = foodRepository.findByName(foodName).get();
-//        assertThat(foodEntity.getName()).isEqualTo(foodName);
-//        assertThat(foodEntity.getId()).isEqualTo(1L);
-//
         //when
         RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
                 .food(foodName)
                 .ingredient(ingredientName)
                 .build();
+        recipeService.save(requestDto);
 
-
-
-        //assert
-//        assertThat(requestDto.getFood()).isEqualTo(foodName);
-//        assertThat(requestDto.getIngredient()).isEqualTo(ingredientName);
-        requestDto.toEntity();
-//        Recipe recipe = requestDto.toEntity();
-//        recipeRepository.save(_recipe);
-//
-//        //when
-//        Recipe recipeEntity = recipeRepository.findAll().get(0);
-//
-//        //then
-//        assertThat(requestDto.getFood()).isEqualTo(food);
-//
-////        assertThat(_recipe.getId()).isGreaterThan(0L);
-    }
-    //fixme: 얘부터 해결
-    @Test
-    public void 음식과_재료가_이미_저장되어있을때_레시피_서비스로_레시피가_저장된다(){
-        //given
-        String food= "김볶밥";
-        String ingredient = "김치";
-        Food _food = Food.builder().name(food).build();
-        Ingredient _ingredient = Ingredient.builder().name(ingredient).build();
-        foodRepository.save(_food);
-        ingredientRepository.save(_ingredient);
-
-        //when
-//        List<Food> foodList = foodRepository.findAll();
-//        Food foodEntity = foodRepository.findByName(food).get();
 
         //then
-//        Food _food = foodList.get(0);
-//        assertThat(foodEntity.getName()).isEqualTo("김볶밥");
-//
-        RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
-                .food(food)
-                .ingredient(ingredient)
-                .build();
-        //when
-
-
-        //when
-//        Long id = recipeService.save(requestDto);
-//
-//        List<Recipe> recipeList = recipeRepository.findAll();
-//        assertThat(recipeList.get(0).getFood().getName()).isEqualTo("김볶밥");
+        Recipe recipe = recipeRepository.findAll().get(0);
+        assertThat(recipe.getFood().getName()).isEqualTo(foodName);
+        assertThat(recipe.getIngredient().getName()).isEqualTo(ingredientName);
     }
 
+    @Test
+    @WithMockUser(roles="USER")
+    public void 음식과_재료가_이미_저장되어있을때_레시피Api로_레시피가_저장된다() throws Exception {
+        //given
+        String foodName= "김볶밥";
+        String ingredientName = "김치";
+        Food food = Food.builder().name("김볶밥").build();
+        Ingredient ingredient = Ingredient.builder().name("김치").build();
+        foodRepository.save(food);
+        ingredientRepository.save(ingredient);
+        RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
+                .food(foodName)
+                .ingredient(ingredientName)
+                .build();
+        String url = "http://localhost:" + port + "/api/v1/recipe/save";
+
+
+        //when
+        //MockMvc로 api 테스트
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //then
+        List<Recipe> all = recipeRepository.findAll();
+        assertThat(all.get(0).getFood().getName()).isEqualTo(foodName);
+    }
+
+    //TODO: 음식과 재료가 저장되어 있지 않으면 전부 저장된다
 
     //FIXME:
     @Test

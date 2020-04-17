@@ -18,6 +18,11 @@ import java.util.stream.Collectors;
 public class PostsService {
     private final PostsRepository postsRepository;
 
+    /** @RequiredArgsConstructor 가 있기 때문에 생략해도 된다**/
+//    public PostsService(PostsRepository postsRepository) {
+//        this.postsRepository = postsRepository;
+//    }
+
     @Transactional
     public Long save(PostsSaveRequestDto requestDto) {
         return postsRepository.save(requestDto.toEntity()).getId();
