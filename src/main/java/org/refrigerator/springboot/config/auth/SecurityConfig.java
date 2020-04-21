@@ -40,6 +40,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                     .oauth2Login()
                         .userInfoEndpoint()
                             .userService(customOAuth2UserService);  //user service인터페이스 구현체 등록
+//                    .and()
+//                        .defaultSuccessUrl("/");
+
+
+
     }
 
 }

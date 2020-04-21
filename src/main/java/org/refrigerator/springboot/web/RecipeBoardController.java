@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
 
 
 @RequiredArgsConstructor
@@ -20,7 +21,12 @@ public class RecipeBoardController {
 
     private final PostsService postsService;
 
-    @GetMapping("/recipeBoard")
+//    @GetMapping("/")
+//    public String index(Model model, @LoginUser SessionUser user){
+//        return "index";
+//    }
+
+//    @GetMapping("/recipeBoard")
     public String recipeBoard(Model model, @LoginUser SessionUser user){
         /**
          * Model: 서버 템플릿 엔진에서 사용할수있는 객체 저장

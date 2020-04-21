@@ -1,19 +1,16 @@
 package org.refrigerator.springboot.web;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.*;
 import org.junit.runner.RunWith;
-import org.refrigerator.springboot.domain.posts.Posts;
 import org.refrigerator.springboot.domain.recipe.*;
-import org.refrigerator.springboot.service.recipe.IngredientService;
 import org.refrigerator.springboot.service.recipe.RecipeService;
-import org.refrigerator.springboot.web.dto.IngredientSaveRequestDto;
 import org.refrigerator.springboot.web.dto.RecipeSaveRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
@@ -90,7 +87,7 @@ public class RecipeApiControllerTest {
         recipeRepository.save(recipe);
 
         //when
-        Food foodEntity = foodRepository.findByName("김볶밥").get();
+        Food foodEntity = foodRepository.findByName("김볶밥");
         Recipe recipeEntity = recipeRepository.findById(1L).get();
         //then
         assertThat(foodEntity.getName()).isEqualTo("김볶밥");
@@ -152,11 +149,11 @@ public class RecipeApiControllerTest {
         assertThat(all.get(0).getFood().getName()).isEqualTo(foodName);
     }
 
-    //TODO: 음식과 재료가 저장되어 있지 않으면 전부 저장된다
-
     //FIXME:
     @Test
-    public void 레시피_Dto_저장하면_음식_재료_Dto도_저장된다(){
+    @WithMockUser(roles = "USER")
+    public void 음식과_재료가_없으면_새로_모두_저장된다() throws Exception{
+        //TODO: API로 레시피/음식/재료 추가하기
         //given
         String food = "김볶밥";
         String ingredient = "김치";
@@ -164,46 +161,22 @@ public class RecipeApiControllerTest {
                 .food(food)
                 .ingredient(ingredient)
                 .build();
-        Long id = recipeService.save(requestDto);
+        String url = "http://localhost:" + port + "/api/v1/recipe/save";
 
-        //when
-        List<Recipe> recipeList = recipeRepository.findAll();
-        List<Ingredient> ingredientList = ingredientRepository.findAll();
-
-        //then
-        assertThat(id).isEqualTo(1);
-//        assertThat(recipeList.get(0).getIngredient().getName()).isEqualTo("김치");
-//        Ingredient result = ingredientList.get(0);
-//        assertThat(result.getName()).isEqualTo("김치");
-    }
-
-    //FIXME:
-    @Test
-    public void 레시피_음식_재료까지_새로_등록된다() throws Exception{
-        //TODO: 레시피가 입력된다
-        //given
-        String food = "김볶밥";
-        String ingredient = "김치";
-        RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
-                .food(food)
-                .ingredient(ingredient)
-                .build();
-        String url = "http://localhost:" + port + "/api/v1/recipe";
-
+        //MockMvc로 api 테스트
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
         //when
         //TODO: 관리자만 추가할 수 있도록 하기
-        ResponseEntity<Long> responseEntity = restTemplate.postForEntity(url, requestDto, Long.class);
+        List<Recipe> all = recipeRepository.findAll();
+        assertThat(all.get(0).getFood().getName()).isEqualTo(food);
+        assertThat(all.get(0).getIngredient().getName()).isEqualTo(ingredient);
 
-        //then
-//        assertThat(responseEntity.getStatusCode()).isEqualTo(HttpStatus.OK);
-//        assertThat(responseEntity.getBody()).isGreaterThan(0L);
-
-//        List<Recipe> all = recipeRepository.findAll();
-//        assertThat(all.get(0).getFood()).isEqualTo(food);
-//        assertThat(all.get(0).getIngredient()).isEqualTo(ingredient);
-
+        List<Food> fAll = foodRepository.findAll();
+        assertThat(fAll.get(0).getName()).isEqualTo(food);
     }
-
 
 
 
