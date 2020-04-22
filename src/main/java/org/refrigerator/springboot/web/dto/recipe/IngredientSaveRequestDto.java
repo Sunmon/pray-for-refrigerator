@@ -14,11 +14,9 @@ import org.refrigerator.springboot.domain.recipe.Ingredient;
 import org.refrigerator.springboot.domain.recipe.IngredientRepository;
 import org.springframework.stereotype.Service;
 
-//@Getter
-//@NoArgsConstructor  //생성자로 Bean 주입받으면 @Autowired 필요 X
-@RequiredArgsConstructor
+@Getter
+@NoArgsConstructor  //생성자로 Bean 주입받으면 @Autowired 필요 X
 //@AllArgsConstructor
-@Service
 public class IngredientSaveRequestDto {
 
 //    @Autowired
@@ -35,7 +33,4 @@ public class IngredientSaveRequestDto {
 //    public int getSize(){
 //        return ingredientRepository.findAll().size();
 //    }
-    public Ingredient toEntity(){
-        return Ingredient.builder().name(name).category(category).build();
-    }
 }

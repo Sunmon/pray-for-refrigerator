@@ -15,5 +15,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
     List<Food> findByFood(Food food);
 
     //TODO: query 만들기
+    @Query("SELECT r FROM Recipe r")
     Recipe findAny(String item);
 }
