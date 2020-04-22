@@ -5,6 +5,7 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.refrigerator.springboot.domain.recipe.*;
 import org.refrigerator.springboot.service.recipe.RecipeService;
+import org.refrigerator.springboot.web.dto.recipe.RecipeResponseDto;
 import org.refrigerator.springboot.web.dto.recipe.RecipeSaveRequestDto;
 import org.refrigerator.springboot.web.dto.recipe.RecipeSearchRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -70,7 +71,6 @@ public class RecipeApiControllerTest {
 
     @Test
     public void 음식_재료_Repository로_직접_저장된다(){
-
         Food food;
         Ingredient ingredient;
 
@@ -175,14 +175,83 @@ public class RecipeApiControllerTest {
         assertThat(fAll.get(0).getName()).isEqualTo(food);
     }
 
+    //TODO: 엔티티 주요 재료로 저장
+    private void 음식_setup(){
+        //given
+        String food = "잔치국수";
+        String[] ingredients = {"국수", "김치", "계란"};
+        for(String ingredient : ingredients){
+            boolean mainMaterial = false;
+
+            if(ingredient.equals("국수")) mainMaterial = true;
+            RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
+                .food(food)
+                .ingredient(ingredient)
+                .mainMaterial(mainMaterial)
+                .build();
+            recipeService.save(requestDto);
+        }
+
+        String food2 = "잔치라면";
+        String[] ingredients2 = {"라면", "김치", "계란", "파"};
+        for(String ingredient : ingredients){
+            boolean mainMaterial = false;
+            if(ingredient.equals("라면")) mainMaterial = true;
+            RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
+                    .food(food)
+                    .ingredient(ingredient)
+                    .mainMaterial(mainMaterial)
+                    .build();
+            recipeService.save(requestDto);
+        }
+
+        String food3 = "삼겹살구이";
+        String[] ingredients3 = {"삼겹살", "파", "마늘"};
+        for(String ingredient : ingredients){
+            boolean mainMaterial = false;
+            if(ingredient.equals("삼겹살")) mainMaterial = true;
+            RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
+                    .food(food)
+                    .ingredient(ingredient)
+                    .mainMaterial(mainMaterial)
+                    .build();
+            recipeService.save(requestDto);
+        }
+    }
+
     //TODO: 검색버튼 누르면 검색결과 리턴
+    @Test
+    @WithMockUser(roles="USER")
+    public void 레시피_키워드_검색_테스트() throws Exception{
+        //given
+        this.음식_setup();
+
+        //TODO: submit하면 post형식으로 들어온다는데 그게 뭔말임? searchString이 들어온단건가?
+        String searchString = "삼겹살, 라면, 파";
+        RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
+        List<RecipeResponseDto> results = recipeService.search(requestDto);
+
+
+        //then
+        //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
+        List<Recipe> all = recipeRepository.findAll();
+        assertThat(all.get(0).getIngredient().getName()).isSubstringOf(searchString);
+    }
+
+    //FIXME:
     @Test
     @WithMockUser(roles = "USER")
     public void 검색하면_나온다() throws Exception{
         //given
+        this.음식_setup();
+
         //TODO: submit하면 post형식으로 들어온다는데 그게 뭔말임? searchString이 들어온단건가?
         String searchString = "삼겹살, 라면, 파";
         RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
+
+
+
+
         String url = "http://localhost:" + port + "/api/v1/recipe/search";
 
         //MockMvc로 api 테스트

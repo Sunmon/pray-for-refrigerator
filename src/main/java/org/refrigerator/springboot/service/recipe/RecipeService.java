@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 //import org.jetbrains.annotaions.NotNull;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -39,12 +40,32 @@ public class RecipeService {
     }
 
     @Transactional(readOnly=true)
-    public List<RecipeResponseDto> searchRecipe(RecipeSearchRequestDto requestDto){
-        List<RecipeResponseDto> responseDtoList = new ArrayList<>();
-        for(String item : requestDto.getItems()){
-            responseDtoList.add(new RecipeResponseDto(recipeRepository.findAny(item)));
+    public List<RecipeResponseDto> search(RecipeSearchRequestDto requestDto){
+
+        List<Recipe> results = null;
+//        List<Recipe> results = new ArrayList<>();
+
+        //음식 이름과 재료로 찾기
+        for(String item:requestDto.getItems()){
+            results.addAll(recipeRepository.findByFoodContaining(item));
+            results.addAll(recipeRepository.findByIngredientContaining(item));
         }
-        return responseDtoList;
+
+        //TODO: 중복제거
+        HashSet<Recipe> recipeHashSet = new HashSet<Recipe>(results);
+        List<Recipe> resultTrimed = new ArrayList<Recipe>(recipeHashSet);
+
+        //TODO: response에 list보고 food 이름별로 정리하기
+
+//        recipeRepository.findAny(requestDto.getItems());
+//
+//        //FIXME:
+//        List<RecipeResponseDto> responseDtoList = new ArrayList<>();
+//        for(String item : requestDto.getItems()){
+//            responseDtoList.add(new RecipeResponseDto(recipeRepository.findAny(item)));
+//        }
+//        return responseDtoList;
+        return null;
     }
 
 

@@ -10,10 +10,12 @@ public class RecipeSaveRequestDto {
 
     private String food;
     private String ingredient;
+    private boolean mainMaterial;
 
     @Builder
-    public RecipeSaveRequestDto(String food, String ingredient){
+    public RecipeSaveRequestDto(String food, String ingredient, boolean mainMaterial){
         this.food = food;
         this.ingredient = ingredient;
+        this.mainMaterial = mainMaterial;
     }
 }

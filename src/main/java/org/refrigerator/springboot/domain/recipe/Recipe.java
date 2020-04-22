@@ -23,18 +23,23 @@ public class Recipe {
 
 //    @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="FOOD_NAME", referencedColumnName = "NAME")
+    @JoinColumn(referencedColumnName = "NAME")
     private Food food;
 
 //    @ManyToOne(cascade = CascadeType.ALL)
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name="INGREDIENT_NAME", referencedColumnName = "NAME")
+    @JoinColumn(referencedColumnName = "NAME")
     private Ingredient ingredient;
 
+    @Column(nullable = false)
+    private boolean mainMaterial = false;
+
+
     @Builder // lombok : 빌더 패턴 클래스 생성
-    public Recipe(Food food, Ingredient ingredient){
+    public Recipe(Food food, Ingredient ingredient, boolean mainMaterial){
         this.food = food;
         this.ingredient = ingredient;
+        this.mainMaterial = mainMaterial;
     }
 
 //    @JoinColumn(name = "ingredients_id")

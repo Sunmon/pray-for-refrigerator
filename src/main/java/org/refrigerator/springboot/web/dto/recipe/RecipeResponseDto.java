@@ -6,17 +6,20 @@ import org.refrigerator.springboot.domain.recipe.Ingredient;
 import org.refrigerator.springboot.domain.recipe.Recipe;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 public class RecipeResponseDto {
 
-    private Long id;
+    private List<Long> id;
     private String food;
-    private String ingredient;
+    private List<String> ingredient;
 
-    public RecipeResponseDto(Recipe entity) {
-        this.id = entity.getId();
-        this.food = entity.getFood().getName();
-        this.ingredient = entity.getIngredient().getName();
+    public RecipeResponseDto(List<Recipe> entityList) {
+        for(Recipe entity : entityList){
+            this.id.add(entity.getId());
+            this.food = entity.getFood().getName();
+            this.ingredient.add(entity.getIngredient().getName());
+        }
     }
 }
