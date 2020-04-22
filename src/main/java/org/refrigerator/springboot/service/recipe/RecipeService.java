@@ -2,12 +2,14 @@ package org.refrigerator.springboot.service.recipe;
 
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.domain.recipe.*;
-import org.refrigerator.springboot.web.dto.RecipeSaveRequestDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeResponseDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSaveRequestDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSearchRequestDto;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 //import org.jetbrains.annotaions.NotNull;
-import javax.transaction.Transactional;
-import java.util.Optional;
-import java.util.function.Supplier;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -34,6 +36,15 @@ public class RecipeService {
 //        if(Food food = foodRepository.findByName(requestDto.getFood()).get());
 
         return recipeRepository.save(this.toEntity(requestDto)).getId();
+    }
+
+    @Transactional(readOnly=true)
+    public List<RecipeResponseDto> searchRecipe(RecipeSearchRequestDto requestDto){
+        List<RecipeResponseDto> responseDtoList = new ArrayList<>();
+        for(String item : requestDto.getItems()){
+            responseDtoList.add(new RecipeResponseDto(recipeRepository.findAny(item)));
+        }
+        return responseDtoList;
     }
 
 

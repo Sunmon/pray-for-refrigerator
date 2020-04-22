@@ -1,6 +1,7 @@
 package org.refrigerator.springboot.domain.recipe;
 
 
+import org.refrigerator.springboot.web.dto.recipe.RecipeResponseDto;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
@@ -13,7 +14,6 @@ public interface RecipeRepository extends JpaRepository<Recipe, Long> {
 
     List<Food> findByFood(Food food);
 
-
-
-
+    //TODO: query 만들기
+    Recipe findAny(String item);
 }

@@ -1,12 +1,12 @@
 package org.refrigerator.springboot.web;
 
 import lombok.RequiredArgsConstructor;
-import org.refrigerator.springboot.web.dto.PostsListResponseDto;
-import org.refrigerator.springboot.web.dto.PostsResponseDto;
-import org.refrigerator.springboot.web.dto.PostsUpdateRequestDto;
+import org.refrigerator.springboot.web.dto.posts.PostsListResponseDto;
+import org.refrigerator.springboot.web.dto.posts.PostsResponseDto;
+import org.refrigerator.springboot.web.dto.posts.PostsUpdateRequestDto;
 import org.springframework.web.bind.annotation.*;
 import org.refrigerator.springboot.service.posts.PostsService;
-import org.refrigerator.springboot.web.dto.PostsSaveRequestDto;
+import org.refrigerator.springboot.web.dto.posts.PostsSaveRequestDto;
 
 import java.util.List;
 

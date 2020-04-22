@@ -2,6 +2,10 @@
 var recipeSearch={
     init: function(){
         var _this = this;
+        $('#btn-search').on('click', function(){
+            // $('#btn-search').sub
+            _this.search();
+        });
         $('#btn-save').on('click', function(){
             _this.save();
         });

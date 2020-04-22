@@ -1,4 +1,4 @@
-package org.refrigerator.springboot.web.dto;
+package org.refrigerator.springboot.web.dto.recipe;
 
 import lombok.*;
 import org.refrigerator.springboot.domain.recipe.Ingredient;

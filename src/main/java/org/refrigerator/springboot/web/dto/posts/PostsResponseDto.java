@@ -2,7 +2,7 @@
  * @class Post response Dto
  * @why Entity필드 중 일부만 사용하므로 Entity를 따로 처리하는 Dto 클래스 만들음
  */
-package org.refrigerator.springboot.web.dto;
+package org.refrigerator.springboot.web.dto.posts;
 
 import lombok.Getter;
 import org.refrigerator.springboot.domain.posts.Posts;

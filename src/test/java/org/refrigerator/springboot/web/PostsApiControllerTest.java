@@ -5,19 +5,15 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mock;
 import org.refrigerator.springboot.domain.posts.Posts;
 import org.refrigerator.springboot.domain.posts.PostsRepository;
-import org.refrigerator.springboot.web.dto.PostsSaveRequestDto;
-import org.refrigerator.springboot.web.dto.PostsUpdateRequestDto;
+import org.refrigerator.springboot.web.dto.posts.PostsSaveRequestDto;
+import org.refrigerator.springboot.web.dto.posts.PostsUpdateRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 
 //Mock 사용하게 import
@@ -26,8 +22,6 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-
-import javax.print.attribute.standard.Media;
 
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;

@@ -1,4 +1,4 @@
-package org.refrigerator.springboot.web.dto;
+package org.refrigerator.springboot.web.dto.posts;
 
 import lombok.Builder;
 import lombok.Getter;

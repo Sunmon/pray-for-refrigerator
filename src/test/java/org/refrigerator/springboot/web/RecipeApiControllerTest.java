@@ -5,14 +5,13 @@ import org.junit.*;
 import org.junit.runner.RunWith;
 import org.refrigerator.springboot.domain.recipe.*;
 import org.refrigerator.springboot.service.recipe.RecipeService;
-import org.refrigerator.springboot.web.dto.RecipeSaveRequestDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSaveRequestDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSearchRequestDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -152,7 +151,6 @@ public class RecipeApiControllerTest {
     @Test
     @WithMockUser(roles = "USER")
     public void 음식과_재료가_없으면_새로_모두_저장된다() throws Exception{
-        //TODO: API로 레시피/음식/재료 추가하기
         //given
         String food = "김볶밥";
         String ingredient = "김치";
@@ -177,11 +175,26 @@ public class RecipeApiControllerTest {
         assertThat(fAll.get(0).getName()).isEqualTo(food);
     }
 
-    //TODO: 검색버튼 누르면 쿼리 수행
+    //TODO: 검색버튼 누르면 검색결과 리턴
     @Test
     @WithMockUser(roles = "USER")
     public void 검색하면_나온다() throws Exception{
+        //given
+        //TODO: submit하면 post형식으로 들어온다는데 그게 뭔말임? searchString이 들어온단건가?
+        String searchString = "삼겹살, 라면, 파";
+        RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
+        String url = "http://localhost:" + port + "/api/v1/recipe/search";
 
+        //MockMvc로 api 테스트
+        mvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(new ObjectMapper().writeValueAsString(requestDto)))
+                .andExpect(status().isOk());
+
+        //when
+        //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
+        List<Recipe> all = recipeRepository.findAll();
+        assertThat(all.get(0).getIngredient().getName()).isSubstringOf(searchString);
     }
 
 

@@ -2,7 +2,7 @@ package org.refrigerator.springboot.web;
 
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.service.recipe.RecipeService;
-import org.refrigerator.springboot.web.dto.RecipeSaveRequestDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSaveRequestDto;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
