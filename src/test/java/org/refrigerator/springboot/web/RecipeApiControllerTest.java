@@ -149,7 +149,6 @@ public class RecipeApiControllerTest {
         assertThat(all.get(0).getFood().getName()).isEqualTo(foodName);
     }
 
-    //FIXME:
     @Test
     @WithMockUser(roles = "USER")
     public void 음식과_재료가_없으면_새로_모두_저장된다() throws Exception{
@@ -178,6 +177,12 @@ public class RecipeApiControllerTest {
         assertThat(fAll.get(0).getName()).isEqualTo(food);
     }
 
+    //TODO: 검색버튼 누르면 쿼리 수행
+    @Test
+    @WithMockUser(roles = "USER")
+    public void 검색하면_나온다() throws Exception{
+
+    }
 
 
 //    @Test

@@ -1,0 +1,30 @@
+.sauces {
+    text-align: center;
+    margin : 10px 10px;
+    /*background-color: antiquewhite;*/
+}
+
+.sauces .btn {
+    background-color: transparent;
+    /*color: #4bb5ff;*/
+    color: #17a2b8;
+}
+
+.sauces .btn:hover {
+    box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.17);
+}
+
+
+/*.sauces.btn:hover,*/
+/*.sauces.btn:focus,*/
+/*.sauces.btn:not(:disabled):not(.disabled):active,*/
+/*.sauces.btn:not(:disabled):not(.disabled):active:focus,*/
+/*.sauces.btn:active:hover {*/
+    /*background-color: transparent;*/
+    /*background-color: #2CA8FF;*/
+    /*color: #4bb5ff;*/
+    /*color: #4bb5ff;*/
+    /*border-color: #2CA8FF;*/
+    /*border-color: #4bb5ff;*/
+    /*box-shadow: none;*/
+/*}*/
