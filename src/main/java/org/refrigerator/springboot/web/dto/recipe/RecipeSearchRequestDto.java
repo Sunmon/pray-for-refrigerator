@@ -13,7 +13,6 @@ public class RecipeSearchRequestDto {
     @Builder
     public RecipeSearchRequestDto(String searchString){
         this.searchString = searchString;
-        items = searchString.split(",");
-        for(String item: items) item.trim();
+        this.items = searchString.split(", *");
     }
 }

@@ -194,11 +194,11 @@ public class RecipeApiControllerTest {
 
         String food2 = "잔치라면";
         String[] ingredients2 = {"라면", "김치", "계란", "파"};
-        for(String ingredient : ingredients){
+        for(String ingredient : ingredients2){
             boolean mainMaterial = false;
             if(ingredient.equals("라면")) mainMaterial = true;
             RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
-                    .food(food)
+                    .food(food2)
                     .ingredient(ingredient)
                     .mainMaterial(mainMaterial)
                     .build();
@@ -207,11 +207,11 @@ public class RecipeApiControllerTest {
 
         String food3 = "삼겹살구이";
         String[] ingredients3 = {"삼겹살", "파", "마늘"};
-        for(String ingredient : ingredients){
+        for(String ingredient : ingredients3){
             boolean mainMaterial = false;
             if(ingredient.equals("삼겹살")) mainMaterial = true;
             RecipeSaveRequestDto requestDto = RecipeSaveRequestDto.builder()
-                    .food(food)
+                    .food(food3)
                     .ingredient(ingredient)
                     .mainMaterial(mainMaterial)
                     .build();
@@ -219,7 +219,14 @@ public class RecipeApiControllerTest {
         }
     }
 
-    //TODO: 검색버튼 누르면 검색결과 리턴
+
+    @Test
+    public void 데이터_mainMaterial확인(){
+        음식_setup();
+        List<Recipe> lists = recipeRepository.findByMainMaterial(true);
+        assertThat(lists.size()).isEqualTo(3);
+    }
+
     @Test
     @WithMockUser(roles="USER")
     public void 레시피_키워드_검색_테스트() throws Exception{
@@ -231,17 +238,20 @@ public class RecipeApiControllerTest {
         RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
         List<RecipeResponseDto> results = recipeService.search(requestDto);
 
-
         //then
         //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
-        List<Recipe> all = recipeRepository.findAll();
-        assertThat(all.get(0).getIngredient().getName()).isSubstringOf(searchString);
+        assertThat(results)
+                .extracting("food")
+                .contains("삼겹살구이", "잔치라면");
+        assertThat(results)
+                .flatExtracting("ingredient")
+                .contains("삼겹살","라면","파");
     }
 
     //FIXME:
     @Test
     @WithMockUser(roles = "USER")
-    public void 검색하면_나온다() throws Exception{
+    public void 검색API_테스트() throws Exception{
         //given
         this.음식_setup();
 

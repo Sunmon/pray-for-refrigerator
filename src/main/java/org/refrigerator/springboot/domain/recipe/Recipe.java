@@ -41,7 +41,4 @@ public class Recipe {
         this.ingredient = ingredient;
         this.mainMaterial = mainMaterial;
     }
-
-//    @JoinColumn(name = "ingredients_id")
-//    private Ingredients ingredients;
 }
