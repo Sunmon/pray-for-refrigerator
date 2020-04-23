@@ -11,14 +11,15 @@
     <div class="row justify-content-center">
         <div class="col-12 col-md-10 col-lg-8">
 <!--            검색 전송 폼-->
-            <form class="card card-sm" action="http://"  method="post">
+<!--            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...-->
+            <form class="card card-sm" action="/recipeSearch/search"  method="get">
                 <div class="card-body row no-gutters align-items-center">
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
                     </div>
                     <!--end of col-->
                     <div class="col">
-                        <input class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">
+                        <input name = "searchString" class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">
                     </div>
                     <!--end of col-->
                     <div class="col-auto">
@@ -33,7 +34,7 @@
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/search.css">
+<!--    <link rel="stylesheet" type="text/css" href="css/search.css">-->
     <div class = "sauces">
         <p class = "btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-info btn-round"><input type = "checkbox" name = "sauce" value = "굴소스">굴소스</label>

@@ -6,6 +6,8 @@ import org.refrigerator.springboot.config.auth.dto.SessionUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 @RequiredArgsConstructor
@@ -23,6 +25,10 @@ public class IndexController {
     /** 레시피 검색 화면 호출 **/
     @GetMapping("/recipeSearch")
     public String recipeSearch(){return "recipe-search";}
+
+    /** 레시피 검색 결과 화면 호출 **/
+    @GetMapping("/recipeSearch/search")
+    public String searchResult(@RequestParam("searchString") String searchString){return "recipe-search-result";}
 
     /** 레시피 게시판 화면 호출**/
     @GetMapping("/recipeBoard")
