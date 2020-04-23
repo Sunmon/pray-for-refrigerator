@@ -19,6 +19,6 @@ public class RecipeApiController {
     @PostMapping("/api/v1/recipe/save")
     public Long save(@RequestBody RecipeSaveRequestDto requestDto) { return recipeService.save(requestDto);}
 
-    @GetMapping("/api/v1/recipe/search")
+    @PostMapping("/api/v1/recipe/search")
     public List<RecipeResponseDto> search(@RequestBody RecipeSearchRequestDto requestDto) { return recipeService.search(requestDto);}
 }

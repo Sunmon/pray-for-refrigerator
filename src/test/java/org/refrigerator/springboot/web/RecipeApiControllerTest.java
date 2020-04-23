@@ -16,6 +16,7 @@ import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
@@ -229,17 +230,18 @@ public class RecipeApiControllerTest {
 
     @Test
     @WithMockUser(roles="USER")
-    public void 레시피_키워드_검색_테스트() throws Exception{
+    public void 레시피_검색서비스_테스트() throws Exception{
         //given
         this.음식_setup();
 
         //TODO: submit하면 post형식으로 들어온다는데 그게 뭔말임? searchString이 들어온단건가?
+        //when
         String searchString = "삼겹살, 라면, 파";
         RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
-        List<RecipeResponseDto> results = recipeService.search(requestDto);
 
         //then
         //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
+        List<RecipeResponseDto> results = recipeService.search(requestDto);
         assertThat(results)
                 .extracting("food")
                 .contains("삼겹살구이", "잔치라면");
@@ -248,7 +250,6 @@ public class RecipeApiControllerTest {
                 .contains("삼겹살","라면","파");
     }
 
-    //FIXME:
     @Test
     @WithMockUser(roles = "USER")
     public void 검색API_테스트() throws Exception{
@@ -256,24 +257,29 @@ public class RecipeApiControllerTest {
         this.음식_setup();
 
         //TODO: submit하면 post형식으로 들어온다는데 그게 뭔말임? searchString이 들어온단건가?
+        //when
         String searchString = "삼겹살, 라면, 파";
         RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
-
-
-
-
         String url = "http://localhost:" + port + "/api/v1/recipe/search";
 
-        //MockMvc로 api 테스트
-        mvc.perform(post(url)
+        //then
+        MvcResult mvcResult = mvc.perform(post(url)
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(new ObjectMapper().writeValueAsString(requestDto)))
-                .andExpect(status().isOk());
+                .andExpect(status().isOk())
+                .andReturn();
+        String content = mvcResult.getResponse().getContentAsString();
+        ObjectMapper mapper = new ObjectMapper(); // can reuse, share globally
+        List<RecipeResponseDto> results = mapper.readValue(content, List.class);
 
-        //when
-        //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
-        List<Recipe> all = recipeRepository.findAll();
-        assertThat(all.get(0).getIngredient().getName()).isSubstringOf(searchString);
+
+//        //레시피중에 삼겹살 || 라면 || 파 들어가는 음식 리턴
+        assertThat(results)
+                .extracting("food")
+                .contains("삼겹살구이", "잔치라면");
+        assertThat(results)
+                .flatExtracting("ingredient")
+                .contains("삼겹살","라면","파");
     }
 
 
