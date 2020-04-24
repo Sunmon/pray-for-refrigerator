@@ -1,36 +1,53 @@
 {{>layout/header}}
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 
 <h1>레시피 검색결과</h1>
 
-<!--검색창-->
-
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
-<!--<link rel="stylesheet" href="../static/.css">-->
-<p class="container">
-    <br/>
-<div class="row justify-content-center">
-    <div class="col-12 col-md-10 col-lg-8">
-        <!--            검색 전송 폼-->
-        <!--            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...-->
-        <form class="card card-sm" action="/recipeSearch/search"  method="get">
-            <div class="card-body row no-gutters align-items-center">
-                <div class="col-auto">
-                    <i class="fas fa-search h4 text-body"></i>
-                </div>
-                <!--end of col-->
-                <div class="col">
-                    <input name = "searchString" class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">
-                </div>
-                <!--end of col-->
-                <div class="col-auto">
-                    <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>
-                </div>
-                <!--end of col-->
-            </div>
-        </form>
-    </div>
-    <!--end of col-->
+<!--네비게이션 바-->
+<!-- Image and text -->
+<!--TODO: div container 삭제해야하나?-->
+<!--TODO: 소스는 toggle하기-->
+<div class="nav-container">
+<nav class="navbar sticky-top navbar-light bg-light ">
+    <a class="navbar-brand" href="#">
+        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+        냉부
+    </a>
+    <!--    검색창-->
+    <span class = "container">
+<!--    <p class="container">-->
+        <!--            <br/>-->
+        <div class="row justify-content-center">
+<!--            <div class="col-12 col-md-10 col-lg-8">-->
+                <!--            검색 전송 폼-->
+                <!--            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...-->
+<!--                <form class="card card-sm" action="/recipeSearch/search"  method="get">-->
+                <form action="/recipeSearch/search"  method="get">
+<!--                    <div class="card-body row no-gutters align-items-center">-->
+                    <div class="row no-gutters align-items-left">
+<!--                        <div class="col-auto">-->
+<!--                            <i class="fas fa-search h4 text-body"></i>-->
+<!--                        </div>-->
+                        <!--end of col-->
+                        <div class="col">
+                            <input name = "searchString" class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">
+                        </div>
+                        <!--end of col-->
+                        <div class="col-auto">
+                            <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>
+                        </div>
+                        <!--end of col-->
+                    </div>
+                </form>
+<!--            </div>-->
+            <!--end of col-->
+        </div>
+    </span>
+</nav>
 </div>
+
+
+<!--<link rel="stylesheet" href="../static/.css">-->
 
 <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
 <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
@@ -56,5 +73,20 @@
     </p>
 </div>
 
+<div id = "result-container" class = "container">
+<!--   TODO: 검색 결과 추가하기-->
+
+    <div class = "row">
+        <div class = "col">
+            adsf
+        </div>
+        <div class = "col">
+asdf
+        </div>
+        <div class = "col">
+adsf
+        </div>
+    </div>
 </div>
+
 {{>layout/footer}}
