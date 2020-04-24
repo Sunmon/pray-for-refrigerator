@@ -3,6 +3,8 @@ package org.refrigerator.springboot.web;
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.config.auth.LoginUser;
 import org.refrigerator.springboot.config.auth.dto.SessionUser;
+import org.refrigerator.springboot.web.dto.recipe.RecipeResponseDto;
+import org.refrigerator.springboot.web.dto.recipe.RecipeSearchRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class IndexController {
 
     private final RecipeBoardController recipeBoardController;
-
+    private final RecipeApiController recipeApiController;
     @GetMapping("/")
     public String index(){
         return "index";
@@ -28,7 +30,11 @@ public class IndexController {
 
     /** 레시피 검색 결과 화면 호출 **/
     @GetMapping("/recipeSearch/search")
-    public String searchResult(@RequestParam("searchString") String searchString){return "recipe-search-result";}
+    public String searchResult(@RequestParam("searchString") String searchString, Model model){
+        RecipeSearchRequestDto requestDto = RecipeSearchRequestDto.builder().searchString(searchString).build();
+        model.addAttribute("recipes", recipeApiController.search(requestDto));
+        return "recipe-search-result";
+    }
 
     /** 레시피 게시판 화면 호출**/
     @GetMapping("/recipeBoard")
