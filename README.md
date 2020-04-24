@@ -32,4 +32,6 @@ ex) 후추 검색 => 후추 ㅇㅇㅇㅇ 레시피 나옴
 - ci/cd (travis, nginx -> docker)
 - mustache
 - html/css/js
+- jquery + ajax
 - 노드js로 하는게 더 재밌었겠다 
+- 웹프론트 똥
