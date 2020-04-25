@@ -6,7 +6,8 @@ var recipeSearch={
             // $('#btn-search').sub
             _this.search();
         });
-        _this.testAdd();
+        _this.search();
+        // _this.testAdd();
         // _this.make_component();
 
     },
@@ -23,6 +24,59 @@ var recipeSearch={
     },
     //TODO: 만약 안되면 RequestDTO내용에 split도 미리 해서 json으로 보내기
     search: function(){
+        //clone 카드
+        //url param으로 값 얻어와서 ajax통신
+        var searchString = this.urlParam('searchString');
+        console.log(searchString);
+
+        //searchString을 배열로 변환 + 빈칸지우기
+        var items = $.map(searchString.split(','), (x)=>{return x.replace('+','')})
+        console.log(items);
+        var req = {
+            searchString: searchString,
+            items: items
+        };
+
+        //ajax통신
+        $.ajax({
+            type: 'POST',
+            url: '/api/v1/recipe/search',
+            dataType: 'json',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(req)
+        }).done(function (data) {
+            //data: json object list
+
+            //data 열 개수 구하기 . 소수점임
+            // var rows = Math.floor((data.length + 2) / 3);
+            var rows = data.length/3;
+            console.log(rows);
+            console.log(data.length);
+
+            for(let  i = 0; i<rows; i+=1){
+                let  $row = $("<div>").addClass('row');
+                    // '<div class = "row" ></div>';
+                for(let  j = 0; j<3; j+=1){
+                    let idx = i * 3 + j;
+                    console.log('row, idx:'+i+' '+idx);
+                    if(idx >= data.length) break;
+                    console.log(data[idx]["food"]);
+                    let $card = $('#card-template').clone(true).addClass('col-4');
+                    $card.find('.card-title').text(data[idx]["food"]);
+                    $card.show();
+                    $row.append($card);
+                    // $card.select('.card-title').text = data[idx]["food"];
+                    // let  $col = '<div class = "col-4">'+data[idx]["food"]+'</div>';
+                    // let  $col = '<div class = "col-4">'+$card+'</div>';
+                    // $row += $col;
+                }
+                // $row += '</div>';
+                $("#result-container").append($row);
+            }
+        }).fail(function (error) {
+            alert(JSON.stringify(error));
+        });
+
 
 
 
@@ -130,6 +184,7 @@ var recipeSearch={
             alert(JSON.stringify(error))
         });
     }
+
 };
 
 recipeSearch.init();
