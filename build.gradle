@@ -44,6 +44,8 @@ dependencies {
     compile('org.springframework.session:spring-session-jdbc')
     //mariaDB
     compile('org.mariadb.jdbc:mariadb-java-client')
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.6'
     //test
     testCompile('org.springframework.boot:spring-boot-starter-test')
 //    testCompile group: 'junit', name: 'junit', version: '4.12'

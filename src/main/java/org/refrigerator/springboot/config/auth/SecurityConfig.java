@@ -27,10 +27,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 //TODO: 레시피 일시적으로 다 풀어놨다.
                 .and()
                     .authorizeRequests()
-                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile","/recipeBoard", "/recipeSearch").permitAll()
-                    .antMatchers("/api/v1/recipe/", "/recipeSearch/*").permitAll()
+                    .antMatchers("/", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile","/recipeBoard", "/recipeSearch/**").permitAll()
+                    .antMatchers("/api/v1/recipe/", "/api/v1/recipe/search").permitAll()
 //                    .antMatchers("/api/v1/**").hasRole(Role.USER.name())
-                    .anyRequest() .authenticated()
+                    .anyRequest().authenticated()
                 //로그아웃 설정
                 .and()
                     .logout()
