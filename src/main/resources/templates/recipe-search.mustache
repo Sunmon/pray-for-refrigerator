@@ -8,11 +8,11 @@
 <!--<link rel="stylesheet" href="../static/.css">-->
 <p class="container">
     <br/>
-    <div class="row justify-content-center">
+    <div class="row justify-content-center ">
         <div class="col-12 col-md-10 col-lg-8">
 <!--            검색 전송 폼-->
 <!--            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...-->
-            <form class="card card-sm" action="/recipeSearch/search"  method="get">
+            <form action="/recipeSearch/search"  method="get">
                 <div class="card-body row no-gutters align-items-center">
                     <div class="col-auto">
                         <i class="fas fa-search h4 text-body"></i>
@@ -25,12 +25,21 @@
                     <div class="col-auto">
                         <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>
                     </div>
+<!--                    <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>-->
+
                     <!--end of col-->
                 </div>
             </form>
         </div>
         <!--end of col-->
     </div>
+
+<!-- Search form -->
+<!--<form class="form-inline active-cyan-3 active-cyan-4" action="/recipeSearch/search"  method="get" >-->
+<!--    <i class="fas fa-search" aria-hidden="true"></i>-->
+<!--    <input class="form-control form-control-sm ml-3 w-75" type="search" name = "searchString"-->
+<!--           placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)" aria-label="Search" >-->
+<!--</form>-->
 
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
     <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
