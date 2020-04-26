@@ -32,8 +32,6 @@ var recipeSearch={
     //    검색결과 필터링
     //    .hide()를 쓰면 자리 배치가 이상해지니까 (row가 유지됨) 그냥 새로 ajax 검색함
 
-        //TODO: 필터 선택한애만 다시 ajax로 불러오기
-
         //만약 체크한거 하나도 없으면 그냥 넘김
         var labels = $('input:checkbox[name="recipe-type"]:checked');
         if(!labels) return;

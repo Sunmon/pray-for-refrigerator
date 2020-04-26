@@ -68,15 +68,16 @@ public class RecipeApiControllerTest {
     @After
     public void tearDown() throws Exception {
         recipeRepository.deleteAll();
+        foodRepository.deleteAll();
+        ingredientRepository.deleteAll();
     }
 
     @Test
     public void 음식_재료_Repository로_직접_저장된다(){
-        Food food;
-        Ingredient ingredient;
-
-        food = Food.builder().name("김볶밥").build();
-        ingredient = Ingredient.builder().name("김치").build();
+        //TODO: food에 사진 저장하기
+        //given
+        Food food = Food.builder().name("김볶밥").build();
+        Ingredient ingredient = Ingredient.builder().name("김치").build();
         foodRepository.save(food);
         ingredientRepository.save(ingredient);
 
@@ -88,12 +89,11 @@ public class RecipeApiControllerTest {
 
         //when
         Food foodEntity = foodRepository.findByName("김볶밥");
-        Recipe recipeEntity = recipeRepository.findById(1L).get();
+        Recipe recipeEntity = recipeRepository.findAll().get(0);
+
         //then
         assertThat(foodEntity.getName()).isEqualTo("김볶밥");
-        assertThat(foodEntity.getId()).isEqualTo(1L);
         assertThat(recipeEntity.getFood().getName()).isEqualTo("김볶밥");
-        assertThat(recipeEntity.getId()).isEqualTo(1L);
     }
 
     @Test
