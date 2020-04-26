@@ -6,7 +6,11 @@ var recipeSearch={
             // $('#btn-search').sub
             _this.search();
         });
+        $('#btn-filter').on('click', function(){
+            _this.filtering();
+        });
         _this.search();
+
         // _this.testAdd();
         // _this.make_component();
 
@@ -22,8 +26,35 @@ var recipeSearch={
             return results[1] || 0;
         }
     },
-    //TODO: 만약 안되면 RequestDTO내용에 split도 미리 해서 json으로 보내기
-    search: function(){
+    filtering: function(){
+
+        var _this = this;
+    //    검색결과 필터링
+    //    .hide()를 쓰면 자리 배치가 이상해지니까 (row가 유지됨) 그냥 새로 ajax 검색함
+
+        //TODO: 필터 선택한애만 다시 ajax로 불러오기
+
+        //만약 체크한거 하나도 없으면 그냥 넘김
+        var labels = $('input:checkbox[name="recipe-type"]:checked');
+        if(!labels) return;
+
+        //레시피 분류 체크박스 정보 얻어오기
+        var filtered = [];
+        for(var label of labels){
+            $.merge(filtered, label.value.split('/'));
+        }
+
+        //result모두 지우기
+        var $resultContainer = $("#result-container");
+        $resultContainer.empty();
+        _this.search(filtered);
+    },
+    search: function(filtered=[]){
+        if(!filtered.length){
+            filtered = ['국','탕','찌개','면','밀가루','밥','죽','떡','반찬','양식'];
+        }
+
+        //ajax로 레시피 검색
         //clone 카드
         //url param으로 값 얻어와서 ajax통신
         var searchString = this.urlParam('searchString');
@@ -46,6 +77,14 @@ var recipeSearch={
             data: JSON.stringify(req)
         }).done(function (data) {
             //data: json object list
+            console.log('filter:' + filtered);
+
+            console.log('filter전'+ data.length);
+            //TODO:data에서 filter에 해당하는것만 고르기
+            data = $.grep(data, function(value,index){
+                console.log('idx,val:'+index + ','+ value);
+                return ($.inArray(value["category"], filtered)>-1);
+            });
 
             //data 열 개수 구하기 . 소수점임
             // var rows = Math.floor((data.length + 2) / 3);
@@ -61,8 +100,10 @@ var recipeSearch={
                     console.log('row, idx:'+i+' '+idx);
                     if(idx >= data.length) break;
                     console.log(data[idx]["food"]);
-                    let $card = $('#card-template').clone(true).addClass('col-4');
+                    let $card = $('#card-template').clone(true).addClass('col-4').addClass('results');
                     $card.find('.card-title').text(data[idx]["food"]);
+                        // .find('.category').text(data[idx]["category"]);
+                    $card.find('.category').text(data[idx]["category"]);
                     $card.show();
                     $row.append($card);
                     // $card.select('.card-title').text = data[idx]["food"];

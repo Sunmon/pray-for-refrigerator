@@ -5,45 +5,85 @@
 
 <!--네비게이션 바-->
 <!-- Image and text -->
+
+<!--navigation toggler-->
+<div class="pos-f-t sticky-top">
+    <div class="collapse" id="navbarToggleExternalContent">
+        <div class="bg-dark p-4">
+            <!--            <h4 class="text-white">Collapsed content</h4>-->
+            <span class = "btn-group-toggle" data-toggle="buttons">
+                <label class="btn btn-outline-secondary btn-round btn-sm"><input type = "checkbox" name = "recipe-type" value = "국/탕/찌개">국/탕/찌개</label>
+                <label class="btn btn-outline-secondary btn-round btn-sm"><input type = "checkbox" name = "recipe-type" value = "면/밀가루">면/밀가루</label>
+                <label class="btn btn-outline-secondary btn-round btn-sm"><input type = "checkbox" name = "recipe-type" value = "밥/죽/떡">밥/죽/떡</label>
+                <label class="btn btn-outline-secondary btn-round btn-sm"><input type = "checkbox" name = "recipe-type" value = "반찬">반찬</label>
+                <label class="btn btn-outline-secondary btn-round btn-sm"><input type = "checkbox" name = "recipe-type" value = "양식">양식</label>
+            </span>
+            <!--                확인버튼 눌린거 유지 ㄴㄴ-->
+            <span id = "btn-filter" class="btn btn-outline-secondary btn-round btn-sm" type = "button" >확인</span>
+            <!--            <span class="text-muted">Toggleable via the navbar brand.</span>-->
+        </div>
+    </div>
+    <!-- Image and text -->
+    <!--<nav class="navbar navbar-light bg-light">-->
+    <!--    <nav class="navbar sticky-top navbar-dark bg-dark">-->
+    <nav class="navbar navbar-dark bg-dark">
+        <a class="navbar-brand" href="#">
+            <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+            Bootstrap : sticky top
+        </a>
+        <!--        i class="fas fa-search h4 text-body-->
+        <!--        search-->
+        <form class="form-inline mr-auto" action="/recipeSearch/search"  method="get">
+            <input class="form-control mr-sm-2" name = "searchString" type="search" placeholder="검색한 내용 갖다대기" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+        <!--        toggler-->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon">
+        </span>
+        </button>
+    </nav>
+</div>
+
 <!--TODO: div container 삭제해야하나?-->
 <!--TODO: 분류는 toggle하기-->
-<div class="nav-container">
-<nav class="navbar sticky-top navbar-light bg-light ">
-    <a class="navbar-brand" href="#">
-        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">
-        냉부
-    </a>
-    <!--    검색창-->
-    <span class = "container">
-<!--    <p class="container">-->
-        <!--            <br/>-->
-        <div class="row justify-content-center">
-<!--            <div class="col-12 col-md-10 col-lg-8">-->
-                <!--            검색 전송 폼-->
-                <!--            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...-->
-<!--                <form class="card card-sm" action="/recipeSearch/search"  method="get">-->
-                <form action="/recipeSearch/search"  method="get">
-<!--                    <div class="card-body row no-gutters align-items-center">-->
-                    <div class="row no-gutters align-items-left">
-<!--                        <div class="col-auto">-->
-<!--                            <i class="fas fa-search h4 text-body"></i>-->
+<!--<div class="nav-container">-->
+<!--<nav class="navbar sticky-top navbar-light bg-light ">-->
+<!--    <a class="navbar-brand" href="#">-->
+<!--        <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30" class="d-inline-block align-top" alt="">-->
+<!--        냉부-->
+<!--    </a>-->
+<!--    &lt;!&ndash;    검색창&ndash;&gt;-->
+<!--    <span class = "container">-->
+<!--&lt;!&ndash;    <p class="container">&ndash;&gt;-->
+<!--        &lt;!&ndash;            <br/>&ndash;&gt;-->
+<!--        <div class="row justify-content-center">-->
+<!--&lt;!&ndash;            <div class="col-12 col-md-10 col-lg-8">&ndash;&gt;-->
+<!--                &lt;!&ndash;            검색 전송 폼&ndash;&gt;-->
+<!--                &lt;!&ndash;            TODO:여기 검색버튼 누르면 어떤 결과를 수행할지...&ndash;&gt;-->
+<!--&lt;!&ndash;                <form class="card card-sm" action="/recipeSearch/search"  method="get">&ndash;&gt;-->
+<!--                <form action="/recipeSearch/search"  method="get">-->
+<!--&lt;!&ndash;                    <div class="card-body row no-gutters align-items-center">&ndash;&gt;-->
+<!--                    <div class="row no-gutters align-items-left">-->
+<!--&lt;!&ndash;                        <div class="col-auto">&ndash;&gt;-->
+<!--&lt;!&ndash;                            <i class="fas fa-search h4 text-body"></i>&ndash;&gt;-->
+<!--&lt;!&ndash;                        </div>&ndash;&gt;-->
+<!--                        &lt;!&ndash;end of col&ndash;&gt;-->
+<!--                        <div class="col">-->
+<!--                            <input name = "searchString" class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">-->
 <!--                        </div>-->
-                        <!--end of col-->
-                        <div class="col">
-                            <input name = "searchString" class="form-control form-control-lg form-control-borderless" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)">
-                        </div>
-                        <!--end of col-->
-                        <div class="col-auto">
-                            <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>
-                        </div>
-                        <!--end of col-->
-                    </div>
-                </form>
-<!--            </div>-->
-            <!--end of col-->
-        </div>
-    </span>
-</nav>
+<!--                        &lt;!&ndash;end of col&ndash;&gt;-->
+<!--                        <div class="col-auto">-->
+<!--                            <button class="btn btn-lg btn-success" id ="btn-search" type="submit">Search</button>-->
+<!--                        </div>-->
+<!--                        &lt;!&ndash;end of col&ndash;&gt;-->
+<!--                    </div>-->
+<!--                </form>-->
+<!--&lt;!&ndash;            </div>&ndash;&gt;-->
+<!--            &lt;!&ndash;end of col&ndash;&gt;-->
+<!--        </div>-->
+<!--    </span>-->
+<!--</nav>-->
 </div>
 <p>placeholder</p>
 <p>placeholder</p>
@@ -122,16 +162,23 @@
 <div id = "result-container" class = "container">
 <!--   TODO: 검색 결과 추가하기-->
 <!--    <div id = "card-elements-template" style="display: none;">-->
-        <div id = "card-template" class="card" style="width: 18rem; display:none">
-            <img class="card-img-top" src="https://placeimg.com/320/100/any" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title">Card title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            </div>
-        </div>
+
 <!--    </div>-->
-    <div id = "test">
+
 <!--            TODO: testing add here-->
+</div>
+
+<div id = "dummy">
+    <div id = "card-template" class="card" style="width: 18rem; display:none">
+        <img class="card-img-top" src="https://placeimg.com/320/100/any" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Card title</h5>
+            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+            <p class="card-text ingredients">재료 키워드에 들어가는거</p>
+            <p class="card-text category">카테고리</p>
+        </div>
     </div>
+</div>
+
 </div>
 {{>layout/footer}}
