@@ -1,18 +1,12 @@
 package org.refrigerator.springboot.web;
 
-import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import org.refrigerator.springboot.config.auth.LoginUser;
 import org.refrigerator.springboot.config.auth.dto.SessionUser;
-import org.refrigerator.springboot.web.dto.recipe.RecipeResponseDto;
-import org.refrigerator.springboot.web.dto.recipe.RecipeSearchRequestDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.List;
 
 
 @RequiredArgsConstructor

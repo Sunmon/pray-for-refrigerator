@@ -1,102 +1,107 @@
-<!--<body>-->
 {{>layout/header}}  <!-- css import -->
+<head>
+    <link rel="stylesheet" href="/css/index.css">
+</head>
 
-<!--<head>-->
-<!--    <meta charset="UTF-8">-->
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0">-->
-<!--    <meta http-equiv="X-UA-Compatible" content="ie=edge">-->
-<!--    <title>Responsive Sticky Navbar</title>-->
-<!--    <link rel="stylesheet" href="style.css">-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">-->
-<!--    <script src="https://code.jquery.com/jquery-3.3.1.js"></script>-->
-<!--</head>-->
-<!--<body>-->
-<link rel="stylesheet" href="/css/index-style.css">
+<nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">Start Bootstrap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
+                aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home
+                        <span class="sr-only">(current)</span>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#about">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#services">Services</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#contact">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
 
-<h1>냉장고를 부탁해</h1>
-<a href = "/recipeSearch" id = "btn-search" class = "btn btn-success active" role="button">레시피 검색</a>
-<a href = "/recipeBoard" id = "btn-board" class = "btn btn-success active" role="button">게시판</a>
+<!-- Full Page Image Header with Vertically Centered Content -->
+<header class="masthead">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <!--            <div class="trapezoid"> </div>-->
+            <div class="col-12 text-center title-div text-dark"><div class="col-12 text-center">
+                <h1 class="font-weight-light">냉장고를 부탁해</h1>
+                <p class="lead">오직, 집에 있는 재료로만</p>
+            </div>
+            <form action="/recipeSearch/search"  method="get" class=" col-6 justify-content-center mr-auto ml-auto form-inline active-cyan-3 active-cyan-4">
+                <i class="fas fa-search" aria-hidden="true"></i>
+                <input id = "searchInput" class="form-control form-control-sm ml-3 w-75" name="searchString" type="search" placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)" aria-label="Search">
+            </form>
+            <div class="trapezoid"></div>
+            </div>
+        </div>
+    </div>
+</header>
 
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
-<h1>냉장고를 부탁해</h1>
+<!-- Page Content -->
+<section class="py-5">
+    <div class="container">
+        <h2 id = "about" class="font-weight-light">About</h2>
+        <h3>'냉장고를 부탁해'는 냉장고 속 재료로 요리할 수 있는 음식을 추천해주는 서비스입니다.</h3>
+        <p>
+            뭐먹을지 걱정노노 <br>
+            귀찮게 나갈 필요 없이, 집에 있는 재료만으로 맛있는 요리를 만들어보세요! <br>
+            소개말어쩌구저쩌구 모르겠어 엉엉
+        </p>
+        <h2 id = "services" class="font-weight-light">Services</h2>
+        <p>
+            레시피 검색으로 요리 가능한 음식을 알아보세요!
+            <a href="/recipeSearch" id="btn-search" class="btn btn-success active" role="button">레시피 검색</a>
+            <br>
+            <br>
+            레시피 올리기로 다른 사람들과 레시피를 공유하세요!
+            <a href="/recipeBoard" id="btn-board" class="btn btn-success active" role="button">게시판</a>
+        </p>
+        <h2 id = "contact" class="font-weight-light">Contact</h2>
+        <p>
+            email : blackmilk274@gmail.com<br>
+            github: www.github.com/sunmon
+        </p>
+        <!-- Search form -->
+<!--        <div>-->
+<!--            <h1>냉장고를 부탁해</h1>-->
+<!--        </div>-->
+<!--        <div>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--            <p>냉장고를부탁해</p>-->
+<!--        </div>-->
+    </div>
+</section>
 
-
-
-<!--FIXME: 메인페이지 js 안써짐-->
 <script src="/js/app/index.js"></script>
-
-{{>layout/footer}}  <!-- js import -->
-
-
-
-
-<!-- 자동으로 생성된 html -->
-<!--<div class="container body-content">-->
-<!--    <div class="container">-->
-<!--        <div class="row justify-content-center" style="padding-top:10px;">-->
-<!--            <label>TITLE</label>-->
-<!--        </div>-->
-<!--        <div class="row justify-content-center" style="padding-top:10px;">-->
-<!--            <img alt="Image html" width="90%" height="90%" style="max-height:500px;max-width:500px;" src="https://sketch2code.azurewebsites.net/Content/img/fake_img.svg" />-->
-<!--        </div>-->
-<!--        <div class="row justify-content-center" style="padding-top:10px;">-->
-<!--            <p class="text-black-50">-->
-<!--                Lorem ipsum dolor sit amet, consectetur adipiscing elit-->
-<!--                <br />-->
-<!--                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.-->
-<!--                <br />-->
-<!--                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris-->
-<!--            </p>-->
-<!--        </div>-->
-<!--        <div class="row justify-content-start" style="padding-top:10px;">-->
-
-<!--            <div class="col" style="padding-top:10px;">-->
-<!--                <label>RECIPE</label>-->
-<!--            </div>-->
-<!--            <div class="col" style="padding-top:10px;">-->
-<!--                <label>BOARD</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row justify-content-start" style="padding-top:10px;">-->
-<!--            <div class="col" style="padding-top:10px;">-->
-<!--                <img alt="Image html" width="90%" height="90%" style="max-height:500px;max-width:500px;" src="https://sketch2code.azurewebsites.net/Content/img/fake_img.svg" />-->
-<!--            </div>-->
-<!--            <div class="col" style="padding-top:10px;">-->
-<!--                <img alt="Image html" width="90%" height="90%" style="max-height:500px;max-width:500px;" src="https://sketch2code.azurewebsites.net/Content/img/fake_img.svg" />-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row justify-content-end" style="padding-top:10px;">-->
-<!--            <a href="">CONTACT</a>-->
-<!--        </div>-->
-<!--    </div>-->
-<!--</div>-->
+{{>layout/footer}}  <!-- css import -->

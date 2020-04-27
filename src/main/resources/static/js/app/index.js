@@ -2,41 +2,36 @@
 var index = {
     init:          function () {
         var _this = this;
-        _this.nav_toggle();
-        // _this.scroll_effect();
+        $(window).on('scroll', function(){_this.scrollEffect()});
     },
-    nav_toggle:    function () {
-        $(".menu-icon").on("click", function () {
-            $("nav ul").toggleClass("showing");
-        });
+    scrollEffect: function() {
+        // $(window).on('scroll', function () {
+        if ($(window).scrollTop() > 10) {
+            $('nav').removeClass('navbar-dark');
+            $('nav').addClass('navbar-light shadow bg-light');
+
+        } else {
+            $('nav').removeClass('navbar-light shadow bg-light');
+            $('nav').addClass('navbar-dark');
+
+        }
     },
-    scroll_effect: function () {
-        // $(window).on("scroll", function () {
-            // index.scroll_effect();
-            if ($(window).scrollTop()) {
-                $('nav').addClass('black');
-            } else {
-                $('nav').removeClass('black');
-            }
-        // });
+    validateForm: function() {
+        //TODO: form 내용 확인해서 비면 안넘어가게
+    var x = $('searchInput').value();   
+    if (x == "") {
+        alert("Name must be filled out");
+        return false;
     }
+}
+
 };
 
-// $(document).ready(function () {
-//     $(".menu-icon").on("click", function () {
-//         $("nav ul").toggleClass("showing");
-//     });
-// });
-
-// Scrolling Effect
-
-$(window).on("scroll", function () {
-    index.scroll_effect();
-//     // if ($(window).scrollTop()) {
-//     //     $('nav').addClass('black');
-//     // } else {
-//     //     $('nav').removeClass('black');
-//     // }
-});
+    // $('.navTrigger').click(function () {
+    // $(this).toggleClass('active');
+    // console.log("Clicked menu");
+    // $("#mainListDiv").toggleClass("show_list");
+    // $("#mainListDiv").fadeIn();
+    // bg-light shadow
 
 index.init();

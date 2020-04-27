@@ -1,0 +1,64 @@
+
+.nav {
+    width: 100%;
+    height: 65px;
+    position: fixed;
+    line-height: 65px;
+    text-align: center;
+
+}
+
+nav {
+    transition: all 0.5s ease;
+}
+
+
+
+
+.masthead {
+    height: 100vh;
+    min-height: 500px;
+    background-image: url('/images/front.jpg'),
+    radial-gradient(rgba(255,255,255,0) 40%, rgba(0,0,0,1) 70%);
+    background-blend-mode: luminosity;
+
+    /*     filter: grayscale(100%); */
+    /*background: url("/images/front.jpg") no-repeat scroll 0px 100% / cover transparent;*/
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 10rem rgba(0, 0, 0, .5);
+}
+
+header form{
+    /*background-color : cornsilk;*/
+    position: relative;
+    bottom: 40%;
+}
+
+body header form input[type=search] {
+    border: 2px solid #4dd0e1;
+    box-shadow :  #4dd0e1;
+
+}
+
+
+body header form i{
+    color: #4dd0e1;
+    /*     color: white; */
+}
+
+.title-div{
+    z-index: 0;
+
+}
+.trapezoid {
+    position: absolute;
+    min-width: 50%;
+    min-height: 150%;
+    background-color: rgba(255,255,255,0.7);
+    top:-25%;
+    left:25%;
+    transform:skew(-5deg);
+    z-index: -1;
+}

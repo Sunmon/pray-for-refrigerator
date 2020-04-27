@@ -1,10 +1,13 @@
 {{>layout/header}}
 
+<head>
+    <link rel="stylesheet" href="/css/search.css" type="text/css">
+</head>
+
 <h1>레시피 검색</h1>
 
 <!--검색창-->
 
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
 <!--<link rel="stylesheet" href="../static/.css">-->
 <p class="container">
     <br/>
@@ -41,8 +44,8 @@
 <!--           placeholder="냉장고 속 재료를 검색해보세요 (예: 삼겹살, 라면, 파)" aria-label="Search" >-->
 <!--</form>-->
 
-    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
-    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+<!--    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />-->
+<!--    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">-->
 <!--    <link rel="stylesheet" type="text/css" href="css/search.css">-->
     <div class = "sauces">
         <p class = "btn-group-toggle" data-toggle="buttons">
@@ -64,6 +67,7 @@
             <label class="btn btn-info btn-round"><input type = "checkbox" name = "sauce" value = "케찹">케찹</label>
         </p>
     </div>
+<script src="/js/app/recipeSearch.js"></script>
 
 </div>
 {{>layout/footer}}
