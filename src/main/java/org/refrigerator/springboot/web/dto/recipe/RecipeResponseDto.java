@@ -17,6 +17,7 @@ public class RecipeResponseDto {
     private List<Long> id;  //필요없을듯
     private String food;
     private List<String> ingredient;
+    private String img;
     private String category;    //음식 카테고리(밥,죽,떡...)
 
     public RecipeResponseDto(List<Recipe> entityList) {
@@ -28,6 +29,8 @@ public class RecipeResponseDto {
                 .collect(Collectors.toList());
         this.food = entityList.get(0).getFood().getName();
         this.category = entityList.get(0).getFood().getCategory();
+
+        this.img = entityList.get(0).getFood().getImg();
 //        this.ingredient = new ArrayList<>();
 //        this.id = new ArrayList<>();
 //        for(Recipe entity : entityList){

@@ -102,6 +102,7 @@ var recipeSearch={
                     $card.find('.card-title').text(data[idx]["food"]);
                         // .find('.category').text(data[idx]["category"]);
                     $card.find('.category').text(data[idx]["category"]);
+                    $card.find('.card-img-top').attr('src',data[idx]["img"]);
                     $card.show();
                     $row.append($card);
                     // $card.select('.card-title').text = data[idx]["food"];

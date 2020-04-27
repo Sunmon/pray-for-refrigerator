@@ -31,9 +31,14 @@ public class Food implements Serializable {
     @OneToMany(mappedBy="food")
     private List<Recipe> recipeList = new ArrayList<>();
 
+    @Column
+    private String img;
+
     @Builder // lombok : 빌더 패턴 클래스 생성
-    public Food(String name){
+    public Food(String name, String category, String img){
         this.name = name;
+        this.category = category;
+        this.img = img;
     }
 
     public void update(String name, String category) {
