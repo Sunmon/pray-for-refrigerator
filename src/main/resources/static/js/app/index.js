@@ -1,8 +1,9 @@
 //다른 js와 겹치지 않게 따로 index라는 scope선언
 var index = {
-    init:          function () {
+    init: function () {
         var _this = this;
-        $(window).on('scroll', function(){_this.scrollEffect()});
+        $(window).on('scroll', function(){_this.scrollEffect();});
+        $('#searchInput').on('keydown', function(e){_this.validateForm(e);});
     },
     scrollEffect: function() {
         // $(window).on('scroll', function () {
@@ -16,15 +17,14 @@ var index = {
 
         }
     },
-    validateForm: function() {
-        //TODO: form 내용 확인해서 비면 안넘어가게
-    var x = $('searchInput').value();   
-    if (x == "") {
-        alert("Name must be filled out");
-        return false;
+    validateForm: function(e) {
+        // console.log(e.key);
+        if(!$('#searchInput').val()) return;
+        if (e.key === "Enter")
+        {
+            $('#form_search').submit();
+        }
     }
-}
-
 };
 
     // $('.navTrigger').click(function () {

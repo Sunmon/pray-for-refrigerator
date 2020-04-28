@@ -10,7 +10,10 @@ var recipeSearch={
             _this.filtering();
         });
         _this.search();
-
+        _this.initInput();
+        // $('#searchInput').on('keydown', function(e){_this.validateForm(e);});
+        // $('#searchInput').text(_this.urlParam('searchString'));
+        // $('#searchInput').val(_this.urlParam('searchString'));
         // _this.testAdd();
         // _this.make_component();
 
@@ -165,6 +168,31 @@ var recipeSearch={
     },
     make_component: function(){
         //TODO: param으로 검색 string 가져오기
+    },
+    replaceAll: function(str, searchStr, replaceStr){
+        return str.split(searchStr).join(replaceStr);
+    },
+    initInput: function(){
+        var _this = this;
+        var param = _this.urlParam('searchString');
+        param = _this.replaceAll(param, '+', ' ');
+        var $searchInput = $('#searchInput');
+        $searchInput.val(param);
+
+        //검색하는 값 없을 때 검색 막기
+        var $button = $('#form_search button');
+        $button.on('click', function(){
+            // console.log('clicked!');
+            if($searchInput.val()) $('#form_search').submit();
+        });
+        $searchInput.on('keydown', function(e){if(e.key === "Enter") $button.click();});
+    },
+    validateForm: function(e) {
+        if(!$('#searchInput').val()) return;
+        if (e.key === "Enter")
+        {
+            $('#form_search').submit();
+        }
     },
     save: function(){
         var data = {

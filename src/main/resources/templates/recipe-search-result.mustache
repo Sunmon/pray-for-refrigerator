@@ -42,10 +42,12 @@
         </a>
         <!--        i class="fas fa-search h4 text-body-->
         <!--        search-->
-        <form class="form-inline mr-auto" action="/recipeSearch/search" method="get">
-            <input class="form-control mr-sm-2" name="searchString" type="search" placeholder="검색한 내용 갖다대기"
+        <form id = "form_search" class="form-inline mr-auto" action="/recipeSearch/search" method="get">
+            <input id = "searchInput" class="form-control mr-sm-2" name="searchString" type="search"
                    aria-label="Search">
-            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            <input type="text" style="display: none;" />
+<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
         </form>
         <!--        toggler-->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
