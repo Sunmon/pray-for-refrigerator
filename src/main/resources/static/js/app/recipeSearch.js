@@ -93,8 +93,10 @@ var recipeSearch={
             console.log(rows);
             console.log(data.length);
 
+            //임시객체
+            var imgs = ['http://placehold.it/320x100','http://placehold.it/250x250', 'http://placehold.it/100x120'];
             for(let  i = 0; i<rows; i+=1){
-                let  $row = $("<div>").addClass('row col-10 justify-content-around my-auto mr-5 ml-auto');
+                let  $row = $("<div>").addClass('row col-12 justify-content-around my-5 mr-auto ml-auto');
                     // '<div class = "row" ></div>';
                 for(let  j = 0; j<3; j+=1){
                     let idx = i * 3 + j;
@@ -105,7 +107,23 @@ var recipeSearch={
                     $card.find('.card-title').text(data[idx]["food"]);
                         // .find('.category').text(data[idx]["category"]);
                     $card.find('.category').text(data[idx]["category"]);
-                    $card.find('.card-img-top').attr('src',data[idx]["img"]);
+                    $card.find('.card-img-top').attr('src',imgs[j]);
+                    //TODO: width height 같게
+                    //TODO: ingredient 추가
+                    var ing_list = data[idx]["ingredient"];
+                    for(var ing of ing_list){
+                        console.log("ing:"+ing);
+                        var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+                        if($.inArray(ing, items) > -1) $span.addClass('bg-info text-light');
+                        else $span.addClass('bg-light text-secondary');
+                        // var $span = $("<span>").text(ing);
+                        $card.find('.ingredients').append($span);
+
+                    }
+
+                    // $card.find('.ingredient')
+                        // .css('max-height', '50%');
+                    // $card.find('.card-img-top').attr('src',data[idx]["img"]);
                     $card.show();
                     $row.append($card);
                     // $card.select('.card-title').text = data[idx]["food"];
