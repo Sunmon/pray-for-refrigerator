@@ -94,14 +94,14 @@ var recipeSearch={
             console.log(data.length);
 
             for(let  i = 0; i<rows; i+=1){
-                let  $row = $("<div>").addClass('row');
+                let  $row = $("<div>").addClass('row col-10 justify-content-around my-auto mr-5 ml-auto');
                     // '<div class = "row" ></div>';
                 for(let  j = 0; j<3; j+=1){
                     let idx = i * 3 + j;
                     console.log('row, idx:'+i+' '+idx);
                     if(idx >= data.length) break;
                     console.log(data[idx]["food"]);
-                    let $card = $('#card-template').clone(true).addClass('col-4').addClass('results');
+                    let $card = $('#card-template').clone(true).addClass('col-3 mr-auto ml-auto').addClass('results');
                     $card.find('.card-title').text(data[idx]["food"]);
                         // .find('.category').text(data[idx]["category"]);
                     $card.find('.category').text(data[idx]["category"]);
@@ -119,55 +119,6 @@ var recipeSearch={
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-    },
-    testAdd : function(){
-        //url param으로 값 얻어와서 ajax통신
-        var searchString = this.urlParam('searchString');
-        console.log(searchString);
-
-        //searchString을 배열로 변환 + 빈칸지우기
-        var items = $.map(searchString.split(','), (x)=>{return x.replace('+','')})
-        console.log(items);
-        var req = {
-            searchString: searchString,
-            items: items
-        };
-
-        //ajax통신
-        $.ajax({
-            type: 'POST',
-            url: '/api/v1/recipe/search',
-            dataType: 'json',
-            contentType: 'application/json; charset=utf-8',
-            data: JSON.stringify(req)
-        }).done(function (data) {
-            //data: json object list
-
-            //data 열 개수 구하기 . 소수점임
-            // var rows = Math.floor((data.length + 2) / 3);
-            var rows = data.length/3;
-            console.log(rows);
-            console.log(data.length);
-
-            for(let  i = 0; i<rows; i+=1){
-                let  $row = '<div class = "row" >';
-                for(let  j = 0; j<3; j+=1){
-                    let idx = i * 3 + j;
-                    console.log('row, idx:'+i+' '+idx);
-                    if(idx >= data.length) break;
-                    console.log(data[idx]["food"]);
-                    let  $col = '<div class = "col-4">'+data[idx]["food"]+'</div>';
-                    $row += $col;
-                }
-                $row += '</div>';
-                $("#test").append($row);
-            }
-        }).fail(function (error) {
-            alert(JSON.stringify(error));
-        });
-    },
-    make_component: function(){
-        //TODO: param으로 검색 string 가져오기
     },
     replaceAll: function(str, searchStr, replaceStr){
         return str.split(searchStr).join(replaceStr);
