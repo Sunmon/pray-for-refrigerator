@@ -116,10 +116,6 @@ var recipeSearch={
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
-
-
-
-
     },
     testAdd : function(){
         //url param으로 값 얻어와서 ajax통신
