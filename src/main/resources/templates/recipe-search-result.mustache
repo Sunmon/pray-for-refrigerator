@@ -4,6 +4,10 @@
 
 <!--네비게이션 바-->
 <!-- Image and text -->
+<head>
+    <link rel="stylesheet" href="/css/search.css">
+</head>
+<div id = "wrapper">
 
 <!--navigation toggler-->
 <div class="pos-f-t sticky-top">
@@ -56,31 +60,26 @@
 
 
 <!--<link rel="stylesheet" type="text/css" href="css/search.css">-->
-<div class="sauces">
-    <p class="btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="굴소스">굴소스</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="쌈장">쌈장</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="마요네즈">마요네즈</label>
-    </p>
-    <p class="btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="소금">소금</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="후추">후추</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="간장">간장</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="고추장">고추장</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="된장">된장</label>
-    </p>
-    <p class="btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="물엿">물엿</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="액젓">액젓</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="멸치">멸치</label>
-        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="케찹">케찹</label>
-    </p>
-</div>
-
-<div id="result-container" class="container">
-    <!--   TODO: 검색 결과 추가하기-->
-</div>
-
+<!--<div class="sauces">-->
+<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="굴소스">굴소스</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="쌈장">쌈장</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="마요네즈">마요네즈</label>-->
+<!--    </p>-->
+<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="소금">소금</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="후추">후추</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="간장">간장</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="고추장">고추장</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="된장">된장</label>-->
+<!--    </p>-->
+<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="물엿">물엿</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="액젓">액젓</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="멸치">멸치</label>-->
+<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="케찹">케찹</label>-->
+<!--    </p>-->
+<!--</div>-->
 <div id="dummy d-none">
     <div id="card-template" class="card" style="width: 18rem; display:none">
         <img class="card-img-top" src="https://placeimg.com/320/100/any" alt="Card image cap">
@@ -94,7 +93,13 @@
     </div>
 </div>
 
+<div id="result-container" class="container">
+    <!--   TODO: 검색 결과 추가하기-->
 </div>
+</div>
+
+
+
 <script src="/js/app/recipeSearch.js"></script>
 
 {{>layout/footer}}

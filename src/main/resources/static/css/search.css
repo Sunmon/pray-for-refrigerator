@@ -22,6 +22,15 @@ form > .row{
     flex-wrap: nowrap;
 }
 
+#wrapper {
+    display: flex;
+    min-height: 95vh;
+    flex-direction: column;
+}
+#result-container {
+    flex : 1;
+}
+
 /*.active-pink-2 input[type=text]:focus:not([readonly]) {*/
 /*    border-bottom: 1px solid #f48fb1;*/
 /*    box-shadow: 0 1px 0 0 #f48fb1;*/
