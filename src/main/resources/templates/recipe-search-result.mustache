@@ -13,7 +13,7 @@
 <div class="pos-f-t sticky-top">
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-            <!--            <h4 class="text-white">Collapsed content</h4>-->
+            <h4 class="text-white d-inline-block">필터</h4>
             <span class="btn-group-toggle" data-toggle="buttons">
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
                                                                                  value="국/탕/찌개">국/탕/찌개</label>
@@ -28,17 +28,17 @@
             </span>
             <!--                확인버튼 눌린거 유지 ㄴㄴ-->
             <span id="btn-filter" class="btn btn-outline-secondary btn-round btn-sm" type="button">확인</span>
-            <!--            <span class="text-muted">Toggleable via the navbar brand.</span>-->
+<!--                        <span class="text-muted">Toggleable via the navbar brand.</span>-->
         </div>
     </div>
     <!-- Image and text -->
     <!--<nav class="navbar navbar-light bg-light">-->
     <!--    <nav class="navbar sticky-top navbar-dark bg-dark">-->
     <nav class="navbar navbar-dark bg-dark">
-        <a class="navbar-brand" href="#">
-            <img src="/docs/4.0/assets/brand/bootstrap-solid.svg" width="30" height="30"
+        <a class="navbar-brand" href="/">
+            <img src="" width="30" height="30"
                  class="d-inline-block align-top" alt="">
-            Bootstrap : sticky top
+            자부!
         </a>
         <!--        i class="fas fa-search h4 text-body-->
         <!--        search-->
@@ -87,7 +87,7 @@
         <img class="card-img-top" src="https://placeimg.com/320/100/any" alt="Card image cap">
         <div class="card-body">
             <h5 class="card-title">Card title</h5>
-            <p class="card-text">card text</p>
+<!--            <p class="card-text">card text</p>-->
             <p class="card-text ingredients"></p>
             <p class="card-text category d-none"></p>
         </div>
@@ -95,7 +95,12 @@
 </div>
 
 <div id="result-container" class="container">
-    <!--   TODO: 검색 결과 추가하기-->
+    <div id = "result-text" class="my-4 mr-auto ml-5">
+        총 <h3></h3>개의 결과가 있습니다.
+    </div>
+    <div id = "result-cards">
+        <!--   TODO: 검색 결과 추가하기-->
+    </div>
 </div>
 </div>
 

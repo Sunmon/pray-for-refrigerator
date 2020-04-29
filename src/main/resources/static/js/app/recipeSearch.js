@@ -47,7 +47,7 @@ var recipeSearch={
 
         //result모두 지우기
         var $resultContainer = $("#result-container");
-        $resultContainer.empty();
+        $resultContainer.find("#result-cards").empty();
         _this.search(filtered);
     },
     search: function(filtered=[]){
@@ -81,11 +81,14 @@ var recipeSearch={
             console.log('filter:' + filtered);
 
             console.log('filter전'+ data.length);
-            //TODO:data에서 filter에 해당하는것만 고르기
             data = $.grep(data, function(value,index){
                 console.log('idx,val:'+index + ','+ value);
                 return ($.inArray(value["category"], filtered)>-1);
             });
+
+            //TODO: 검색 결과 개수 span 채우기
+            var $result_text = $('#result-text');
+            $result_text.find('h3').text(data.length).addClass('d-inline-block text-info font-weight-bold');
 
             //data 열 개수 구하기 . 소수점임
             // var rows = Math.floor((data.length + 2) / 3);
@@ -107,15 +110,20 @@ var recipeSearch={
                     $card.find('.card-title').text(data[idx]["food"]);
                         // .find('.category').text(data[idx]["category"]);
                     $card.find('.category').text(data[idx]["category"]);
-                    $card.find('.card-img-top').attr('src',imgs[j]);
+                    $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
                     //TODO: width height 같게
-                    //TODO: ingredient 추가
                     var ing_list = data[idx]["ingredient"];
                     for(var ing of ing_list){
                         console.log("ing:"+ing);
-                        var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
-                        if($.inArray(ing, items) > -1) $span.addClass('bg-info text-light');
-                        else $span.addClass('bg-light text-secondary');
+                        var $span = $("<span>").addClass('font-italic mr-1 ml-1').text('#'+ ing);
+                        // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
+                        // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+                        //button으로!
+                        if($.inArray(ing, items) > -1) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
+                        // else $span.addClass('btn btn-secondary btn-sm text-light');
+                        //그냥
+                        // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
+                        else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
                         // var $span = $("<span>").text(ing);
                         $card.find('.ingredients').append($span);
 
@@ -132,7 +140,7 @@ var recipeSearch={
                     // $row += $col;
                 }
                 // $row += '</div>';
-                $("#result-container").append($row);
+                $("#result-cards").append($row);
             }
         }).fail(function (error) {
             alert(JSON.stringify(error));
