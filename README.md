@@ -1,6 +1,8 @@
-# pray-for-refrigerator
+# 자취생을 부탁해
 
-냉장고에 있는 음식을 입력하면 요리를 추천해주는 서비스
+냉장고에 있는 재료를 입력하면 요리를 추천해주는 서비스
+
+자취생을 위한 요리 추천 서비스
 
 
 ## What is different?
@@ -26,6 +28,42 @@ ex ) 소고기 검색 => 소고기가 들어가는 음식 추천 (갈비, 갈비
 
 ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 소고기덮밥, 데리야끼 소고기덮밥...
 
+## 프로젝트 설명
+
+#### endpoints
+
+#### code coverage 100%
+
+모든 기능을 Unit test로 작성
+
+모든 기능 테스트 통과
+
+    게시판 기능 설명
+
+    Key summary
+
+        포트폴리오에서 강조하고 싶은 내용들을 적습니다. 예를 들어 유닛테스트 Code coverage가 100%라면 적어도 됩니다. 
+
+    Folder structure 소개
+
+    Backend architecture
+
+        Routes/Endpoints 소개
+
+        Controller, Service, Repository, Store procedure 관계도
+
+        DB 스키마
+
+    Frontend architecture
+
+        React라면 Redux pattern의 역할 소개
+
+    설치 방법
+
+    실행 방법
+
+    향후 추가 할 기능들
+
 
 
 ## TODO
@@ -37,6 +75,8 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 - 사진에서 재료 추출
 - 사진 aws에 업로드 / 다운로드 기능
 - 보안 신경쓰기 : sql 인젝션 등...
+- https 추가
+- 게시판 기능 추가
 
 
 ## 기술 스택
