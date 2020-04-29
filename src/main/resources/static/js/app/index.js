@@ -4,6 +4,9 @@ var index = {
         var _this = this;
         $(window).on('scroll', function(){_this.scrollEffect();});
         $('#searchInput').on('keydown', function(e){_this.validateForm(e);});
+        $('#btn-search').on('click', function(){
+            $('#searchInput').focus();
+        });
     },
     scrollEffect: function() {
         // $(window).on('scroll', function () {
