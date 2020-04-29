@@ -33,7 +33,8 @@ public class Ingredient implements Serializable{
     
     @Builder // lombok : 빌더 패턴 클래스 생성
     public Ingredient(String name, String category){
-        this.name = name;this.category = category;
+        this.name = name;
+        this.category = category;
     }
 
 

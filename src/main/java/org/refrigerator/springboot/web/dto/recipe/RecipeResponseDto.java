@@ -14,9 +14,11 @@ import java.util.stream.Collectors;
 @Getter
 public class RecipeResponseDto {
 
+    //TODO: 리팩토링
     private List<Long> id;  //필요없을듯
     private String food;
     private List<String> ingredient;
+    private List<String> ingredientCategory;
     private String img;
     private String category;    //음식 카테고리(밥,죽,떡...)
 
@@ -26,6 +28,9 @@ public class RecipeResponseDto {
                 .collect(Collectors.toList());
         this.ingredient = entityList.stream()
                 .map(recipe -> recipe.getIngredient().getName())
+                .collect(Collectors.toList());
+        this.ingredientCategory = entityList.stream()
+                .map(recipe -> recipe.getIngredient().getCategory())
                 .collect(Collectors.toList());
         this.food = entityList.get(0).getFood().getName();
         this.category = entityList.get(0).getFood().getCategory();

@@ -113,6 +113,23 @@ var recipeSearch={
                     $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
                     //TODO: width height 같게
                     var ing_list = data[idx]["ingredient"];
+                    // var cat_list = data[idx]["ingredientCategory"];
+                    // for(let i in ing_list){
+                    //     console.log("ing i :"+i);
+                    //     let ing = ing_list[i];
+                    //     let cat = cat_list[i];
+                    //     var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
+                    //     // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
+                    //     // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+                    //     //button으로!
+                    //     if($.inArray(ing, items) > -1 || $.inArray(cat, items)) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
+                    //         // else $span.addClass('btn btn-secondary btn-sm text-light');
+                    //         //그냥
+                    //     // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
+                    //     else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
+                    //     // var $span = $("<span>").text(ing);
+                    //     $card.find('.ingredients').append($span);
+                    // }
                     for(var ing of ing_list){
                         console.log("ing:"+ing);
                         var $span = $("<span>").addClass('font-italic mr-1 ml-1').text('#'+ ing);
