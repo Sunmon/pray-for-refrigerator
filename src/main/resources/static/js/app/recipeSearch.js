@@ -92,73 +92,139 @@ var recipeSearch={
 
             //data 열 개수 구하기 . 소수점임
             // var rows = Math.floor((data.length + 2) / 3);
-            var rows = data.length/3;
-            console.log(rows);
-            console.log(data.length);
+            // var rows = data.length/3;
+            // console.log(rows);
+            // console.log(data.length);
 
             //임시객체
             var imgs = ['http://placehold.it/320x100','http://placehold.it/250x250', 'http://placehold.it/100x120'];
-            for(let  i = 0; i<rows; i+=1){
-                let  $row = $("<div>").addClass('row col-12 justify-content-around my-5 mr-auto ml-auto');
-                    // '<div class = "row" ></div>';
-                for(let  j = 0; j<3; j+=1){
-                    let idx = i * 3 + j;
-                    console.log('row, idx:'+i+' '+idx);
-                    if(idx >= data.length) break;
-                    console.log(data[idx]["food"]);
-                    let $card = $('#card-template').clone(true).addClass('col-3 mr-auto ml-auto').addClass('results');
-                    $card.find('.card-title').text(data[idx]["food"]);
-                        // .find('.category').text(data[idx]["category"]);
-                    $card.find('.category').text(data[idx]["category"]);
-                    $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
-                    //TODO: width height 같게
-                    var ing_list = data[idx]["ingredient"];
-                    // var cat_list = data[idx]["ingredientCategory"];
-                    // for(let i in ing_list){
-                    //     console.log("ing i :"+i);
-                    //     let ing = ing_list[i];
-                    //     let cat = cat_list[i];
-                    //     var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
-                    //     // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
-                    //     // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
-                    //     //button으로!
-                    //     if($.inArray(ing, items) > -1 || $.inArray(cat, items)) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
-                    //         // else $span.addClass('btn btn-secondary btn-sm text-light');
-                    //         //그냥
-                    //     // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
-                    //     else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
-                    //     // var $span = $("<span>").text(ing);
-                    //     $card.find('.ingredients').append($span);
-                    // }
-                    for(var ing of ing_list){
-                        console.log("ing:"+ing);
-                        var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
-                        // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
-                        // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
-                        //button으로!
-                        if($.inArray(ing, items) > -1) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
+            // for(let  i = 0; i<rows; i+=1){
+                // let  $row = $("<div>").addClass('row col-12 justify-content-around my-5 mr-auto ml-auto');
+                //
+                // '<div class = "row" ></div>';
+                //col 세개씩
+            //     for(let  j = 0; j<3; j+=1){
+            //         let idx = i * 3 + j;
+            //         console.log('row, idx:'+i+' '+idx);
+            //         if(idx >= data.length) break;
+            //         console.log(data[idx]["food"]);
+            //         let $card = $('#card-template').clone(true).addClass('col-3 mr-auto ml-auto').addClass('results');
+            //         $card.find('.card-title').text(data[idx]["food"]);
+            //             // .find('.category').text(data[idx]["category"]);
+            //         $card.find('.category').text(data[idx]["category"]);
+            //         $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
+            //         //TODO: width height 같게
+            //         var ing_list = data[idx]["ingredient"];
+            //         for(var ing of ing_list){
+            //             console.log("ing:"+ing);
+            //             var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
+            //             // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
+            //             // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+            //             //button으로!
+            //             if($.inArray(ing, items) > -1) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
+            //             // else $span.addClass('btn btn-secondary btn-sm text-light');
+            //             //그냥
+            //             // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
+            //             else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
+            //             // var $span = $("<span>").text(ing);
+            //             $card.find('.ingredients').append($span);
+            //         }
+            //         var $w100 = $('<div>').addClass('w-100');
+            //
+            //
+            //         // $card.find('.ingredient')
+            //             // .css('max-height', '50%');
+            //         // $card.find('.card-img-top').attr('src',data[idx]["img"]);
+            //         $card.show();
+            //         $row.append($card);
+            //         // $card.select('.card-title').text = data[idx]["food"];
+            //         // let  $col = '<div class = "col-4">'+data[idx]["food"]+'</div>';
+            //         // let  $col = '<div class = "col-4">'+$card+'</div>';
+            //         // $row += $col;
+            //     }
+            //     // $row += '</div>';
+            //     $("#result-cards").append($row);
+            // }
+
+
+        //    새로 바꿔보기
+            let data_len = data.length;
+            let $row = $("<div>").addClass('row col-12 justify-content-around my-5 mr-auto ml-auto');
+            for(let idx in data){
+                //3개 채웠으면 div나누기
+                if(idx >0 && idx % 3 == 0) $row.append($('<div>').addClass('w-100'));
+                //아직 아니면 그냥 붙이기
+                let $card = $('#card-template').clone(true).addClass('col-8 col-md-3 mr-auto ml-auto mb-3 mb-md-5').addClass('results');
+                $card.find('.card-title').text(data[idx]["food"]);
+                $card.find('.category').text(data[idx]["category"]);
+                $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
+                //TODO: width height 같게
+                var ing_list = data[idx]["ingredient"];
+                for(var ing of ing_list){
+                    console.log("ing:"+ing);
+                    var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
+                    // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
+                    // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+                    //button으로!
+                    if($.inArray(ing, items) > -1) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
                         // else $span.addClass('btn btn-secondary btn-sm text-light');
                         //그냥
-                        // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
-                        else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
-                        // var $span = $("<span>").text(ing);
-                        $card.find('.ingredients').append($span);
-
-                    }
-
-                    // $card.find('.ingredient')
-                        // .css('max-height', '50%');
-                    // $card.find('.card-img-top').attr('src',data[idx]["img"]);
+                    // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
+                    else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
+                    // var $span = $("<span>").text(ing);
+                    $card.find('.ingredients').append($span);
                     $card.show();
                     $row.append($card);
+                }
+            }
+            $("#result-cards").append($row);
+
+            // for(let  i = 0; i<rows; i+=1){
+            //     // let  $row = $("<div>").addClass('row col-12 justify-content-around my-5 mr-auto ml-auto');
+            //
+            //     // '<div class = "row" ></div>';
+            //     //col 세개씩
+            //     for(let  j = 0; j<3; j+=1){
+            //         let idx = i * 3 + j;
+            //         console.log('row, idx:'+i+' '+idx);
+            //         if(idx >= data.length) break;
+            //         console.log(data[idx]["food"]);
+            //         let $card = $('#card-template').clone(true).addClass('col-3 mr-auto ml-auto').addClass('results');
+            //         $card.find('.card-title').text(data[idx]["food"]);
+            //         // .find('.category').text(data[idx]["category"]);
+            //         $card.find('.category').text(data[idx]["category"]);
+            //         $card.find('.card-img-top').attr('src',imgs[1]);    //TODO: data의 이미지 링크로 attr로 바꾸기
+            //         //TODO: width height 같게
+            //         var ing_list = data[idx]["ingredient"];
+            //         for(var ing of ing_list){
+            //             console.log("ing:"+ing);
+            //             var $span = $("<span>").addClass('font-italic my-1 mr-1 ml-1').text('#'+ ing);
+            //             // var $span = $("<button>").addClass('font-italic mr-1 ml-1').text(ing);
+            //             // var $span = $("<span>").addClass('font-italic mr-1 ml-1').text(ing);
+            //             //button으로!
+            //             if($.inArray(ing, items) > -1) $span.addClass('btn btn-info btn-sm text-light').css('pointer-events', 'none');
+            //                 // else $span.addClass('btn btn-secondary btn-sm text-light');
+            //                 //그냥
+            //             // if($.inArray(ing, items) > -1) $span.addClass('rounded-circle bg-info text-light');
+            //             else $span.addClass('btn btn-secondary btn-sm text-light').css('pointer-events', 'none');
+            //             // var $span = $("<span>").text(ing);
+            //             $card.find('.ingredients').append($span);
+            //         }
+
+
+                    // $card.find('.ingredient')
+                    // .css('max-height', '50%');
+                    // $card.find('.card-img-top').attr('src',data[idx]["img"]);
+                    // $card.show();
+                    // $row.append($card);
                     // $card.select('.card-title').text = data[idx]["food"];
                     // let  $col = '<div class = "col-4">'+data[idx]["food"]+'</div>';
                     // let  $col = '<div class = "col-4">'+$card+'</div>';
                     // $row += $col;
-                }
+                // }
                 // $row += '</div>';
-                $("#result-cards").append($row);
-            }
+                // $("#result-cards").append($row);
+            // }
         }).fail(function (error) {
             alert(JSON.stringify(error));
         });
