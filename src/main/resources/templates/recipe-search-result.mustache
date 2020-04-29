@@ -7,15 +7,15 @@
 <head>
     <link rel="stylesheet" href="/css/search.css">
 </head>
-<div id = "wrapper">
+<div id="wrapper">
 
-<!--navigation toggler-->
-<div class="pos-f-t sticky-top">
-<!--    TODO: row 추가 -->
-    <div class="collapse" id="navbarToggleExternalContent">
-        <div class="bg-dark p-4">
-<!--            <h4 class="text-white d-inline-block">필터</h4>-->
-            <span class="btn-group-toggle ml-3" data-toggle="buttons">
+    <!--navigation toggler-->
+    <div class="pos-f-t sticky-top">
+        <!--    TODO: row 추가 -->
+        <div class="collapse" id="navbarToggleExternalContent">
+            <div class="bg-dark p-4">
+                <!--            <h4 class="text-white d-inline-block">필터</h4>-->
+                <span class="btn-group-toggle ml-3" data-toggle="buttons">
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
                                                                                  value="국/탕/찌개">국/탕/찌개</label>
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
@@ -27,88 +27,54 @@
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
                                                                                  value="양식">양식</label>
             </span>
-            <!--                확인버튼 눌린거 유지 ㄴㄴ-->
-            <span id="btn-filter" class="btn btn-outline-warning btn-round btn-sm" type="button">적용</span>
-<!--                        <span class="text-muted">Toggleable via the navbar brand.</span>-->
+                <!--                확인버튼 눌린거 유지 ㄴㄴ-->
+                <span id="btn-filter" class="btn btn-outline-warning btn-round btn-sm" type="button">적용</span>
+            </div>
         </div>
-    </div>
-    <!-- Image and text -->
-    <!--<nav class="navbar navbar-light bg-light">-->
-    <!--    <nav class="navbar sticky-top navbar-dark bg-dark">-->
-    <nav class="navbar navbar-dark bg-dark justify-content-start">
-        <a class="navbar-brand" href="/">
-            <img src="" width="30" height="30"
-                 class="d-inline-block align-top" alt="">
-            자취생을 부탁해
-        </a>
-        <!--        i class="fas fa-search h4 text-body-->
-        <!--        search-->
-        <form id = "form_search" class="w-50 form-inline mr-1" action="/recipeSearch/search" method="get">
-            <input id = "searchInput" class="w-75 form-control mr-sm-2" name="searchString" type="search"
-                   aria-label="Search">
-            <input type="text" style="display: none;" />
-<!--            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
-            <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
-        </form>
-        <!--        toggler-->
-<!--        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"-->
-<!--                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
-<!--        <span class="navbar-toggler-icon" >-->
-<!--            <span class="navbar-toggler" style="background-image: url('/images/filter-icon.svg')"/>-->
-<!--            <span class="navbar-toggler"/>-->
-            <img class = "navbar-toggler border-0" src="/images/filter.svg" alt="filter" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+        <!-- Image and text -->
+        <nav class="navbar navbar-dark bg-dark justify-content-start">
+            <a class="navbar-brand" href="/">
+                <img src="" width="30" height="30"
+                     class="d-inline-block align-top" alt="">
+                자취생을 부탁해
+            </a>
+            <!-- 검색폼 -->
+            <form id="form_search" class="w-50 form-inline mr-1" action="/recipeSearch/search" method="get">
+                <input id="searchInput" class="w-75 form-control mr-sm-2" name="searchString" type="search"
+                       aria-label="Search">
+                <input type="text" style="display: none;"/>
+                <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
+            </form>
+            <!-- 필터 -->
+            <img class="navbar-toggler border-0" src="/images/filter.svg" alt="filter" type="button"
+                 data-toggle="collapse" data-target="#navbarToggleExternalContent"
                  aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-<!--        </span>-->
-<!--        </button>-->
-    </nav>
-</div>
+        </nav>
+    </div>
 
-<!--<link rel="stylesheet" href="../static/.css">-->
+    <!--    더미객체. js에서 복사해서 갖다쓰는 용도-->
+    <div id="dummy d-none">
+        <div id="card-template" class="card" style="width: 18rem; display:none">
+            <img class="card-img-top" src="https://placeimg.com/320/100/any" style="max-height: 250px; overflow:hidden;" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Card title</h5>
+                <!--            <p class="card-text">card text</p>-->
+                <p class="card-text ingredients row justify-content-center"></p>
+                <p class="card-text category d-none"></p>
+            </div>
+        </div>
+    </div>
 
-
-<!--<link rel="stylesheet" type="text/css" href="css/search.css">-->
-<!--<div class="sauces">-->
-<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="굴소스">굴소스</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="쌈장">쌈장</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="마요네즈">마요네즈</label>-->
-<!--    </p>-->
-<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="소금">소금</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="후추">후추</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="간장">간장</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="고추장">고추장</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="된장">된장</label>-->
-<!--    </p>-->
-<!--    <p class="btn-group-toggle" data-toggle="buttons">-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="물엿">물엿</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="액젓">액젓</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="멸치">멸치</label>-->
-<!--        <label class="btn btn-info btn-round"><input type="checkbox" name="sauce" value="케찹">케찹</label>-->
-<!--    </p>-->
-<!--</div>-->
-<div id="dummy d-none">
-    <div id="card-template" class="card" style="width: 18rem; display:none">
-        <img class="card-img-top" src="https://placeimg.com/320/100/any" alt="Card image cap">
-        <div class="card-body">
-            <h5 class="card-title">Card title</h5>
-<!--            <p class="card-text">card text</p>-->
-            <p class="card-text ingredients row justify-content-center"></p>
-            <p class="card-text category d-none"></p>
+    <!--    검색 결과 컨테이너-->
+    <div id="result-container" class="container">
+        <div id="result-text" class="my-4 mr-auto ml-5">
+            총 <h3></h3>개의 결과가 있습니다.
+        </div>
+        <div id="result-cards">
+            <!--   TODO: 검색 결과 추가하기-->
         </div>
     </div>
 </div>
-
-<div id="result-container" class="container">
-    <div id = "result-text" class="my-4 mr-auto ml-5">
-        총 <h3></h3>개의 결과가 있습니다.
-    </div>
-    <div id = "result-cards">
-        <!--   TODO: 검색 결과 추가하기-->
-    </div>
-</div>
-</div>
-
 
 
 <script src="/js/app/recipeSearch.js"></script>
