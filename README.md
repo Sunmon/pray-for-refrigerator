@@ -30,6 +30,11 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 
 #### endpoints
 
+#### code coverage 100%
+
+모든 기능을 Unit test로 작성
+
+모든 기능 테스트 통과
 
 ## TODO
 
