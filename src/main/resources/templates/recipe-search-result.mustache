@@ -11,10 +11,11 @@
 
 <!--navigation toggler-->
 <div class="pos-f-t sticky-top">
+<!--    TODO: row 추가 -->
     <div class="collapse" id="navbarToggleExternalContent">
         <div class="bg-dark p-4">
-            <h4 class="text-white d-inline-block">필터</h4>
-            <span class="btn-group-toggle" data-toggle="buttons">
+<!--            <h4 class="text-white d-inline-block">필터</h4>-->
+            <span class="btn-group-toggle ml-3" data-toggle="buttons">
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
                                                                                  value="국/탕/찌개">국/탕/찌개</label>
                 <label class="btn btn-outline-secondary btn-round btn-sm"><input type="checkbox" name="recipe-type"
@@ -27,14 +28,14 @@
                                                                                  value="양식">양식</label>
             </span>
             <!--                확인버튼 눌린거 유지 ㄴㄴ-->
-            <span id="btn-filter" class="btn btn-outline-secondary btn-round btn-sm" type="button">확인</span>
+            <span id="btn-filter" class="btn btn-outline-warning btn-round btn-sm" type="button">적용</span>
 <!--                        <span class="text-muted">Toggleable via the navbar brand.</span>-->
         </div>
     </div>
     <!-- Image and text -->
     <!--<nav class="navbar navbar-light bg-light">-->
     <!--    <nav class="navbar sticky-top navbar-dark bg-dark">-->
-    <nav class="navbar navbar-dark bg-dark">
+    <nav class="navbar navbar-dark bg-dark justify-content-start">
         <a class="navbar-brand" href="/">
             <img src="" width="30" height="30"
                  class="d-inline-block align-top" alt="">
@@ -42,7 +43,7 @@
         </a>
         <!--        i class="fas fa-search h4 text-body-->
         <!--        search-->
-        <form id = "form_search" class="form-inline mr-auto" action="/recipeSearch/search" method="get">
+        <form id = "form_search" class="form-inline mr-1" action="/recipeSearch/search" method="get">
             <input id = "searchInput" class="form-control mr-sm-2" name="searchString" type="search"
                    aria-label="Search">
             <input type="text" style="display: none;" />
@@ -50,11 +51,15 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="button">Search</button>
         </form>
         <!--        toggler-->
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
-                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon">
-        </span>
-        </button>
+<!--        <button class="navbar-toggler border-0" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"-->
+<!--                aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">-->
+<!--        <span class="navbar-toggler-icon" >-->
+<!--            <span class="navbar-toggler" style="background-image: url('/images/filter-icon.svg')"/>-->
+<!--            <span class="navbar-toggler"/>-->
+            <img class = "navbar-toggler border-0" src="/images/filter.svg" alt="filter" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent"
+                 aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+<!--        </span>-->
+<!--        </button>-->
     </nav>
 </div>
 
