@@ -74,22 +74,29 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 
 ```
 
+### Backend architecture
 
-    게시판 기능 설명
+#### Controllers 
 
-    Key summary
+- IndexController : 메인페이지 컨트롤러. 레시피 검색 / 게시판 호출. 다른 컨트롤러와 연결.
+- PostsApiController : 게시판 관련 컨트롤러. 글 올리기 / 수정/ 삭제/ 열람. PostService와 연결
+- ProfileController : 상태 관련 컨트롤러. 현재 열린 프로퍼티가 뭔지 확인용도
+- RecipeApiController : 레시피 검색 관련 컨트롤러. RecipeService와 연결
 
-        포트폴리오에서 강조하고 싶은 내용들을 적습니다. 예를 들어 유닛테스트 Code coverage가 100%라면 적어도 됩니다. 
+#### Service
 
-    Folder structure 소개
+- PostService : 게시글 저장, 업데이트, 조회, 삭제 기능
+- RecipeService : 레시피 저장, 검색, 조회기능. 
 
-    Backend architecture
+#### Domain
 
-        Routes/Endpoints 소개
+- Posts : 게시글 엔티티
+- Food : 음식 엔티티. ID, 음식이름(잔치국수), 종류(면), 이미지
+- Ingredient: 재료 엔티티. ID, 재료이름(소고기), 종류(고기) 저장
+- Recipe : 레시피 엔티티. 음식별로 필요한 재료 저장. Food와 Ingredient를 FK로 받는다. 
 
-        Controller, Service, Repository, Store procedure 관계도
 
-        DB 스키마
+### Frontend architecture
 
     Frontend architecture
 
@@ -105,7 +112,7 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 
 ## TODO
 
-- 기본 기능 넣기
+- ~재료 검색 ajax로직 리팩토링~ 
 - 카카오 로그인
 - AI 추천 넣기
 - 무중단배포 지금 nginx인데 docker로 바꾸기
@@ -113,8 +120,8 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 - 사진 aws에 업로드 / 다운로드 기능
 - 보안 신경쓰기 : sql 인젝션 등...
 - https 추가
-- 게시판 기능 추가
-- 난이도 별표시
+- 게시판 기능 보완
+- 음식 난이도 별표시
 - 로그인해서 하트 누르기 -> 내 찜
 - 바둑판모드 / 리스트모드
 - card bottom 으로 재료 or  하트찜
