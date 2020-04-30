@@ -4,6 +4,9 @@
 
 자취생을 위한 요리 추천 서비스
 
+![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png)
+
+
 
 ## What is different?
 
@@ -107,7 +110,9 @@
 - recipeBoard.js : 게시판 js
 - recipeSearch.js : 레시피 검색 js. 검색기능 ajax로 처리
 
+## 사이트 주소
 
+www.pray-refrigerator.com
 
 ## TODO
 
