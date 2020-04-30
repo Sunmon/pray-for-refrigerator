@@ -54,8 +54,10 @@ ex) 소고기 검색 => 소고기덮밥, 맛있는 소고기덮밥, 백종원 �
 ├──src
 │   ├── main
 │   │     ├───springboot
-│   │     │       ├─
-│
+│   │     │       ├─ config : 로그인, OAuth, Security 관련 클래스 모음
+│   │     │       ├─ domain : JPA entity 모음
+│   │     │       ├─ service: 서비스 클래스 모음. 트랜젝션
+│   │     │       └─ web : DTO와 컨트롤러 모음
 ├──
 ```
 
