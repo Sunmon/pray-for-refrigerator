@@ -4,7 +4,7 @@
 
 자취생을 위한 요리 추천 서비스
 
-![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png){: width="100%"}
+![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png){: width="50%"}
 
 
 
