@@ -135,6 +135,7 @@ www.pray-refrigerator.com
 
 - 사진에서 재료 추출
 - 찜 목록 기반으로 AI 추천 넣기
+- UI 
 
 
 기타 추가
