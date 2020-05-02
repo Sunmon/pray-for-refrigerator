@@ -110,7 +110,7 @@
 - recipeBoard.js : 게시판 js
 - recipeSearch.js : 레시피 검색 js. 검색기능 ajax로 처리
 
-## 사이트 주소
+## 
 
 www.pray-refrigerator.com
 
