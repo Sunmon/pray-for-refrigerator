@@ -1,5 +1,6 @@
 //다른 js와 겹치지 않게 따로 index라는 scope선언
 var recipeSearch = {
+    search_data : [],   //rest search result object
     init:         function () {
         var _this = this;
         $('#btn-search').on('click', function () {
@@ -55,7 +56,7 @@ var recipeSearch = {
 
         //searchString을 배열로 변환 + 빈칸지우기
         var items = $.map(searchString.split(','), (x) => {
-            return x.replace('+', '')
+            return x.replace('+', '');
         })
         console.log(items);
         var req = {
@@ -75,9 +76,28 @@ var recipeSearch = {
             // console.log('filter:' + filtered);
 
             // console.log('filter전'+ data.length);
+            // var _data = this.search_data;
+
+            //TODO: search_data 전역변수로 설정
+            // this.search_data = data;
             data = $.grep(data, function (value, index) {
                 console.log('idx,val:' + index + ',' + value);
                 return ($.inArray(value["category"], filtered) > -1);
+            });
+
+            //검색어-재료 겹치는 개수 저장
+            for(let _data of data){
+                let ing_list = _data.ingredient;
+                let p_num=0;
+                for(let ing of ing_list){
+                    if($.inArray(ing, items)>-1) p_num+=1;
+                }
+                _data.p_num=num;
+            }
+
+            //재료 많이 겹치는 순으로 sort (내림차순)
+            data.sort(function(a,b) {
+                return b.p_num - a.p_num;
             });
 
             var $result_text = $('#result-text');
