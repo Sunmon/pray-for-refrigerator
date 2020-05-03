@@ -92,7 +92,7 @@ var recipeSearch = {
                 for(let ing of ing_list){
                     if($.inArray(ing, items)>-1) p_num+=1;
                 }
-                _data.p_num=num;
+                _data.p_num=p_num;
             }
 
             //재료 많이 겹치는 순으로 sort (내림차순)
