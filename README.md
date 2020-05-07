@@ -1,10 +1,17 @@
+
 # 자취생을 부탁해
+
+![warning](https://img.shields.io/badge/bug-chrome--only-critical.svg)
+
+## 현재(2020.05.07) __크롬 브라우저__로만 이용 가능합니다. 다른 브라우저에서도 이용할 수 있도록 수정중입니다.
+
 
 냉장고에 있는 재료를 입력하면 요리를 추천해주는 서비스
 
 자취생을 위한 요리 추천 서비스
 
 ![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png)
+
 
 
 
