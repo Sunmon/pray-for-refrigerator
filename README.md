@@ -21,7 +21,15 @@
 
 `sqlmap`을 돌려본 결과 : sql injection 공격포인트 없음!
 
+sql 취약점 검색 방법: 
 
+```
+python sqlmap.py -u "http://pray-refrigerator.com/recipeSearch/search?searchString=fdsa" --level 3
+```
+
+결과: sql injection 가능한 포인트 없음
+
+![sql_no](https://user-images.githubusercontent.com/26290571/87749007-73816000-c832-11ea-9366-f7f311182425.png)
 
 
 
