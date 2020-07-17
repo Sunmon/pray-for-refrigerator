@@ -14,6 +14,16 @@
 
 
 
+## POINT
+
+
+### 보안
+
+`sqlmap`을 돌려본 결과 : sql injection 공격포인트 없음!
+
+
+
+
 
 ## What is different?
 
