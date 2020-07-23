@@ -10,7 +10,10 @@
 
 자취생을 위한 요리 추천 서비스
 
+링크 : http://pray-refrigerator.com
+
 ![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png)
+
 
 
 
