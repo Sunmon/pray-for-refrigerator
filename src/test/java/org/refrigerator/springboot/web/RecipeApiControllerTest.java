@@ -1,6 +1,7 @@
 package org.refrigerator.springboot.web;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.nhncorp.lucy.security.xss.XssPreventer;
 import org.junit.*;
 import org.junit.runner.RunWith;
 import org.refrigerator.springboot.domain.recipe.*;
@@ -88,7 +89,7 @@ public class RecipeApiControllerTest {
         recipeRepository.save(recipe);
 
         //when
-        Food foodEntity = foodRepository.findByName("김볶밥");
+        Food foodEntity = foodRepository.findByName("김볶밥").get();
         Recipe recipeEntity = recipeRepository.findAll().get(0);
 
         //then
@@ -117,6 +118,7 @@ public class RecipeApiControllerTest {
         //then
         Recipe recipe = recipeRepository.findAll().get(0);
         assertThat(recipe.getFood().getName()).isEqualTo(foodName);
+        assertThat(foodRepository.findByName("김볶밥").get().getName()).isEqualTo("김볶밥");
         assertThat(recipe.getIngredient().getName()).isEqualTo(ingredientName);
     }
 
@@ -147,6 +149,8 @@ public class RecipeApiControllerTest {
         //then
         List<Recipe> all = recipeRepository.findAll();
         assertThat(all.get(0).getFood().getName()).isEqualTo(foodName);
+        Food f = foodRepository.findByName(foodName).get();
+        assertThat(f.getName()).isEqualTo("김볶밥");
     }
 
     @Test
@@ -280,6 +284,16 @@ public class RecipeApiControllerTest {
         assertThat(results)
                 .flatExtracting("ingredient")
                 .contains("삼겹살","라면","파");
+    }
+
+    //lucy xss preventer test
+    @Test
+    public void testXssPreventer() {
+        String dirty = "\"><script>alert('xss');</script>";
+        String clean = XssPreventer.escape(dirty);
+
+        assertThat(clean).isEqualTo("&quot;&gt;&lt;script&gt;alert(&#39;xss&#39;);&lt;/script&gt;");
+        assertThat(dirty).isEqualTo(XssPreventer.unescape(clean));
     }
 
 
