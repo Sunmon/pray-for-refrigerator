@@ -3,13 +3,13 @@
 
 ![warning](https://img.shields.io/badge/bug-chrome--only-critical.svg)
 
-## 현재(2020.07) __크롬 브라우저__로만 이용 가능합니다. 프론트엔드 개선 작업중입니다 ! 
+## 현재__크롬 브라우저__로만 이용 가능합니다. 프론트엔드 개선 작업중입니다 ! 
 
 냉장고에 있는 재료를 입력하면 요리를 추천해주는 서비스
 
 자취생을 위한 요리 추천 서비스
 
-링크 : http://pray-refrigerator.com
+~~링크 : http://pray-refrigerator.com~~  AWS 기간 만료로 인해 링크 삭제합니다.
 
 ![image](https://user-images.githubusercontent.com/26290571/80666495-595b9f80-8ad7-11ea-93ce-c0a779204c9b.png)
 
